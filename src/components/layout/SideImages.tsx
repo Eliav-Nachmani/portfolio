@@ -7,6 +7,7 @@ interface SideImagesProps {
   images: {
     top: string;
     bottom: string;
+    mobile?: string;
   };
 }
 
