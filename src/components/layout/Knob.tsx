@@ -23,8 +23,8 @@ const Knob: React.FC<KnobProps> = ({ setTheme }) => {
 
       // Determine the new position based on drag amount
       let newPosition;
-      if (deltaY > 60) newPosition = 2; // Large drag up → Jump to White (5 o’clock)
-      else if (deltaY < -60) newPosition = 0; // Large drag down → Jump to Green (7 o’clock)
+      if (deltaY > 40) newPosition = 2; // Large drag up → Jump to White (5 o’clock)
+      else if (deltaY < -40) newPosition = 0; // Large drag down → Jump to Green (7 o’clock)
       else newPosition = 1; // Small drag → Middle (12 o’clock)
 
       if (newPosition !== position) {
