@@ -1,0 +1,117 @@
+/* ---------------------------------- */
+/* NEON GLOW ANIMATIONS */
+/* ---------------------------------- */
+
+@keyframes pulseGlow {
+    0%, 100% {
+      opacity: 0.1;
+      filter: blur(3px);
+    }
+    50% {
+      opacity: 0.8;
+      filter: blur(8px);
+    }
+  }
+  
+  @keyframes moveGlow {
+    0% { transform: translate(0, 0); opacity: 0.3; }
+    25% { transform: translate(20px, -15px); opacity: 0.7; }
+    50% { transform: translate(-15px, 25px); opacity: 1; }
+    75% { transform: translate(30px, 5px); opacity: 0.5; }
+    100% { transform: translate(0, 0); opacity: 0.3; }
+  }
+  
+  /* ---------------------------------- */
+  /* STATIC GLOW EFFECTS */
+  /* ---------------------------------- */
+  
+  .glow {
+    position: absolute;
+    background-color: #00ff00;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: pulseGlow 4s infinite alternate ease-in-out;
+  }
+  
+  /* ---------------------------------- */
+  /* MOVING GLOW EFFECTS */
+  /* ---------------------------------- */
+  
+  .moving-glow {
+    position: absolute;
+    background-color: #00ff00;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    filter: blur(4px);
+    opacity: 0.5;
+    animation: moveGlow 5s infinite ease-in-out;
+  }
+  
+  /* ---------------------------------- */
+  /* GLOW POSITIONS */
+  /* ---------------------------------- */
+  
+  .glow-1 { top: 12%; left: 18%; animation-delay: 0.5s; }
+  .glow-2 { top: 45%; left: 32%; animation-delay: 1s; }
+  .glow-3 { bottom: 30%; right: 25%; animation-delay: 1.5s; }
+  .glow-4 { bottom: 65%; left: 75%; animation-delay: 2s; }
+  
+  .moving-glow-1 { top: 25%; left: 30%; animation-delay: 1s; }
+  .moving-glow-2 { top: 55%; left: 48%; animation-delay: 1.5s; }
+  .moving-glow-3 { bottom: 18%; right: 33%; animation-delay: 2s; }
+  
+  @keyframes pulse-border {
+    0% {
+      box-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+    }
+  }
+  
+  .pulse-border {
+    animation: pulse-border 2s infinite alternate;
+  }
+  
+  /* ---------------------------------- */
+  /* STATIC NOISE EFFECTS */
+  /* ---------------------------------- */
+
+  @keyframes noiseEffect {
+    100% { background-position: 50% 0, 60% 50%; }
+  }
+  
+  /* Static Noise Effect */
+  .static-noise-effect {
+    background: 
+      repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 0/2500px 2500px,
+      repeating-conic-gradient(#000 0 0.0001%, #fff 0 0.0002%) 60% 60%/2500px 2500px;
+    background-blend-mode: difference;
+    animation: noiseEffect 0.2s infinite alternate;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+  }
+  
+  /* Shake Effect */
+  @keyframes shakeEffect {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+    100% { transform: translate(0, 0); }
+  }
+  
+  /* Apply shake when static noise is active */
+  .shake {
+    animation: shakeEffect 0.2s ease-in-out infinite;
+  }
+  
+  
+  
