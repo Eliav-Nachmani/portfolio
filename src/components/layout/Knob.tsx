@@ -7,30 +7,24 @@ interface KnobProps {
 }
 
 const Knob: React.FC<KnobProps> = ({ setTheme }) => {
-  const [position, setPosition] = useState(0); // 0 = Green (7 o’clock), 1 = Red (12 o’clock), 2 = White (5 o’clock)
+  const [angle, setAngle] = useState(-120); // Starts at 7 o’clock
   const knobRef = useRef<HTMLDivElement>(null);
 
-  // Define the angles for each step
-  const angles = [-120, 0, 120]; // 7 o’clock, 12 o’clock, 5 o’clock
-
-  // Handles rotation snapping based on drag movement
+  // Handle Mouse Drag Rotation
   const handleMouseDown = (event: React.MouseEvent) => {
     event.preventDefault();
     let startY = event.clientY;
+    let startAngle = angle;
 
     const handleMouseMove = (moveEvent: MouseEvent) => {
       let deltaY = startY - moveEvent.clientY;
+      let newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 1)); // Smooth rotation limit
 
-      // Determine the new position based on drag amount
-      let newPosition;
-      if (deltaY > 40) newPosition = 2; // Large drag up → Jump to White (5 o’clock)
-      else if (deltaY < -40) newPosition = 0; // Large drag down → Jump to Green (7 o’clock)
-      else newPosition = 1; // Small drag → Middle (12 o’clock)
+      setAngle(newAngle);
 
-      if (newPosition !== position) {
-        setPosition(newPosition);
-        updateTheme(newPosition);
-      }
+      // Update theme based on rotation range
+      if (newAngle < 0) setTheme("off"); // 7 o’clock = Transparent
+      else setTheme("red"); // 5 o’clock = Red
     };
 
     const handleMouseUp = () => {
@@ -42,30 +36,15 @@ const Knob: React.FC<KnobProps> = ({ setTheme }) => {
     document.addEventListener("mouseup", handleMouseUp);
   };
 
-  // Handle clicking the knob to advance to the next step
-  const handleKnobClick = () => {
-    const newPosition = (position + 1) % 3; // Cycle through positions
-    setPosition(newPosition);
-    updateTheme(newPosition);
-  };
-
-  // Updates the app theme based on position
-  const updateTheme = (newPosition: number) => {
-    if (newPosition === 0) setTheme("green");
-    else if (newPosition === 1) setTheme("red");
-    else setTheme("white");
-  };
-
   return (
     <div className="relative flex flex-col items-center cursor-pointer">
       <div
         ref={knobRef}
         onMouseDown={handleMouseDown}
-        // onClick={handleKnobClick} // Click still works
         className="relative w-12 h-12 bg-gray-900 border-4 border-neon-green rounded-full shadow-neon select-none flex items-center justify-center"
         style={{
-          transform: `rotate(${angles[position]}deg)`,
-          transition: "transform 0.5s", // Snaps to steps
+          transform: `rotate(${angle}deg)`,
+          transition: "transform 0.1s linear", // Smooth rotation
         }}
       >
         {/* Knob Indicator */}
