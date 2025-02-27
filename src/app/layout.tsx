@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import KnobWrapper from "@/components/layout/KnobWrapper"; // Import the knob functionality
+import ClientWrapper from "@/components/layout/ClientWrapper"; // ✅ Use the new client component
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,8 +39,12 @@ export default function RootLayout({
           }}
         ></div>
 
-        {/* Wrap the app inside the KnobWrapper */}
-        <KnobWrapper>{children}</KnobWrapper>
+        {/* Wrap the app inside the KnobWrapper & AnimatePresence */}
+        <KnobWrapper>
+          <ClientWrapper>
+            <main>{children}</main>
+          </ClientWrapper>
+        </KnobWrapper>
       </body>
     </html>
   );

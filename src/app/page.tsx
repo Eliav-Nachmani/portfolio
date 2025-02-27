@@ -1,10 +1,19 @@
+"use client";
+
+import { motion } from "framer-motion";
 import SideImages from "@/components/layout/SideImages";
 import BioText from "@/components/about/BioText";
 import Navigation from "@/components/layout/Navigation";
 
 export default function AboutMe() {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white relative">
+    <motion.div 
+      initial={{ y: "-100%" }} // Start off-screen at the top
+      animate={{ y: "0%" }} // Slide down into view
+      exit={{ y: "-100%" }} // Moves back up when navigating away (reverse entrance)
+      transition={{ duration: 0.8, ease: "easeOut" }} 
+      className="flex flex-col min-h-screen bg-black text-white relative"
+    >
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 z-0"
@@ -24,8 +33,14 @@ export default function AboutMe() {
         <div className="glow-effect delay-2"></div>
       </div>
 
-      {/* Top Section: Side Images & About Me (85% Height) */}
-      <div className="relative h-[85vh] grid grid-cols-12 items-center px-4 md:px-12 gap-4">
+      {/* Page Content (Slides in from the Top) */}
+      <motion.div
+        initial={{ y: "-100%", opacity: 0 }} // Content starts off-screen at the top
+        animate={{ y: "0%", opacity: 1 }} // Slides down into view
+        exit={{ y: "-100%", opacity: 0 }} // Moves back up when navigating away
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative h-[85vh] grid grid-cols-12 items-center px-4 md:px-12 gap-4"
+      >
         {/* Left Side Images */}
         <div className="col-span-1 md:col-span-2 flex flex-col justify-between h-full overflow-hidden z-10">
           <SideImages
@@ -54,12 +69,17 @@ export default function AboutMe() {
             }}
           />
         </div>
-      </div>
+      </motion.div>
 
-      {/* Bottom Navigation (15% Height) */}
-      <div className="h-[15vh] flex items-center justify-center border-t border-neon-green z-10">
+      {/* Navbar (Exits Smoothly with the Page) */}
+      <motion.div
+        initial={{ y: "0%" }} // Navbar is already visible
+        exit={{ y: "-100%" }} // Moves back up when navigating away (reverse entrance)
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="h-[15vh] flex items-center justify-center border-t border-neon-green z-10 top-0 left-0 w-full bg-black"
+      >
         <Navigation />
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

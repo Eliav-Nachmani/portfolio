@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link"; // ✅ Import Next.js Link
+import { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 const Navigation = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [activeButton, setActiveButton] = useState("About Me");
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleResize = () => {
@@ -15,6 +17,12 @@ const Navigation = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (pathname === "/") setActiveButton("About Me");
+    if (pathname === "/projects") setActiveButton("Projects");
+    if (pathname === "/contact") setActiveButton("Contact");
+  }, [pathname]);
 
   return (
     <nav
@@ -40,19 +48,23 @@ const Navigation = () => {
           const isActive = activeButton === label;
 
           return (
-            <Link key={index} href={path} passHref>
-              <button
-                onClick={() => setActiveButton(label)}
-                className={`relative px-8 py-4 text-lg font-semibold border border-neon-green rounded-md transition-all duration-300 transform 
-                  ${
-                    isActive
-                      ? "bg-white text-black border-neon-green shadow-[inset_0_0_50px_#39ff14] translate-y-[1px]"
-                      : "bg-white text-black border-neon-green animate-[pulse-border_1.5s_infinite]"
-                  }`}
-              >
-                {label}
-              </button>
-            </Link>
+            <button
+              key={index}
+              onClick={() => {
+                if (pathname !== path) {
+                  setActiveButton(label);
+                  router.push(path); // Client-side navigation (prevents full reload)
+                }
+              }}
+              className={`relative px-8 py-4 text-lg font-semibold border border-neon-green rounded-md transition-all duration-300 transform 
+                ${
+                  isActive
+                    ? "bg-white text-black border-neon-green shadow-[inset_0_0_50px_#39ff14] translate-y-[1px]"
+                    : "bg-white text-black border-neon-green animate-[pulse-border_1.5s_infinite]"
+                }`}
+            >
+              {label}
+            </button>
           );
         })}
       </div>

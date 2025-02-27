@@ -1,7 +1,5 @@
 "use client";
 
-import Button from "../Button";
-
 const BioText = () => {
   return (
     <div className="flex flex-col justify-center h-full w-full">
