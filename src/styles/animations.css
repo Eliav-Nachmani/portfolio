@@ -95,7 +95,7 @@
     background-blend-mode: difference;
     animation: noiseEffect 0.2s infinite alternate;
     opacity: 0.6;
-    mix-blend-mode: multiply;
+    mix-blend-mode: screen;
   }
   
   /* Shake Effect */

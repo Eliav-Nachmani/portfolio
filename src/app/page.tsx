@@ -31,8 +31,8 @@ export default function AboutMe() {
           <SideImages
             position="left"
             images={{
-              top: "/images/about-left-1.webp",
-              bottom: "/images/about-left-2.webp",
+              top: "/images/about-2.jpg",
+              bottom: "/images/about-left-1.webp",
             }}
           />
         </div>
@@ -49,8 +49,8 @@ export default function AboutMe() {
           <SideImages
             position="right"
             images={{
-              top: "/images/about-right-1.webp",
-              bottom: "/images/about-right-2.webp",
+              top: "/images/about-4.jpg",
+              bottom: "/images/about-right-1.webp",
             }}
           />
         </div>

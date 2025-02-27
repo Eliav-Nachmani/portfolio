@@ -87,3 +87,7 @@ body::before {
 .border-neon-green {
   border-color: #00ff7f;
 }
+
+.shadow-custom {
+  box-shadow: 0px 0px 10px #00000057, 0px 0px 10px #4e4e4e;
+}
