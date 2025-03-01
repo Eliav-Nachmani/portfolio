@@ -16,6 +16,18 @@ export default function Projects() {
       transition={{ duration: 0.8, ease: "easeOut" }} 
       className="relative flex flex-col min-h-screen bg-black text-white overflow-hidden"
     >
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('/images/projects-bg.webp')", // Ensure image is placed in public/images/
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
+
       {/* Animated Navigation Bar (Moves Up to Top) */}
       <motion.div
         initial={{ y: "100%" }} // Navbar starts at the bottom
