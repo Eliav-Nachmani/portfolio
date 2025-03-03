@@ -1,10 +1,40 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import Navigation from "@/components/layout/Navigation";
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname(); // ✅ Now it's allowed inside a client component
+  const pathname = usePathname();
+  const [showNoise, setShowNoise] = useState(false);
+  const [currentPage, setCurrentPage] = useState(children);
 
-  return <AnimatePresence mode="wait">{children}</AnimatePresence>;
+  useEffect(() => {
+    setShowNoise(true); // Show noise effect
+
+    // Delay rendering the new page until after the noise effect disappears
+    const timer = setTimeout(() => {
+      setCurrentPage(children); // Only update page content AFTER noise effect is done
+      setShowNoise(false); // Hide noise effect
+    }, 300); // Matches noise effect duration
+
+    return () => clearTimeout(timer);
+  }, [pathname, children]);
+
+  return (
+    <div className="relative min-h-screen flex flex-col overflow-hidden">
+      {/* Static Noise Effect (Covers Screen for 0.5s) */}
+      {showNoise && (
+        <div className="absolute inset-0 w-full h-[85vh] static-noise-effect z-50 pointer-events-none"></div>
+      )}
+
+      {/* Page Content (Does NOT change until noise effect finishes) */}
+      <div className="relative w-full h-full">{currentPage}</div>
+
+      {/* Navbar stays static at the bottom */}
+      <div className="h-[15vh] flex items-center justify-center border-t border-neon-green z-50 fixed bottom-0 left-0 w-full bg-black">
+        <Navigation />
+      </div>
+    </div>
+  );
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
-import KnobWrapper from "@/components/layout/KnobWrapper"; // Import the knob functionality
-import ClientWrapper from "@/components/layout/ClientWrapper"; // ✅ Use the new client component
+import KnobWrapper from "@/components/layout/KnobWrapper"; // ✅ Server Component
+import ClientWrapper from "@/components/layout/ClientWrapper"; // ✅ Move animations & navigation logic here
+import Navigation from "@/components/layout/Navigation"; // ✅ Navbar stays static
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,11 +40,9 @@ export default function RootLayout({
           }}
         ></div>
 
-        {/* Wrap the app inside the KnobWrapper & AnimatePresence */}
+        {/* Wrap the app inside KnobWrapper & ClientWrapper */}
         <KnobWrapper>
-          <ClientWrapper>
-            <main>{children}</main>
-          </ClientWrapper>
+          <ClientWrapper>{children}</ClientWrapper> 
         </KnobWrapper>
       </body>
     </html>

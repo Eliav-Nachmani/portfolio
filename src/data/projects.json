@@ -1,0 +1,30 @@
+{
+    "project-1": {
+      "name": "Project One",
+      "image": "/images/project1-preview.webp",
+      "details": "A short description of Project One.",
+      "roles": ["UI/UX Designer", "Frontend Developer"],
+      "technology": ["React", "Next.js", "Framer Motion"],
+      "liveDemo": "https://example.com/project1",
+      "github": "https://github.com/yourgithub/project1"
+    },
+    "project-2": {
+      "name": "Project Two",
+      "image": "/images/project2-preview.webp",
+      "details": "A short description of Project Two.",
+      "roles": ["Fullstack Developer"],
+      "technology": ["Node.js", "Express", "MongoDB"],
+      "liveDemo": "https://example.com/project2",
+      "github": "https://github.com/yourgithub/project2"
+    },
+    "project-3": {
+      "name": "Project Three",
+      "image": "/images/project3-preview.webp",
+      "details": "A short description of Project Three.",
+      "roles": ["Game Developer"],
+      "technology": ["Unity", "C#"],
+      "liveDemo": "https://example.com/project3",
+      "github": "https://github.com/yourgithub/project3"
+    }
+  }
+  
