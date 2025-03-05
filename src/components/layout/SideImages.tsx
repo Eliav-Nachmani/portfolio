@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import HeadshotFlip from "@/components/layout/HeadshotFlip";
 
 interface SideImagesProps {
   position: "left" | "right";
@@ -63,13 +64,14 @@ const SideImages: React.FC<SideImagesProps> = ({ position, images }) => {
           activeNoiseID === generateUniqueID(position, "bottom") ? "shake" : ""
         }`}
       >
+        <HeadshotFlip frontImage={images.bottom} />
         <Image
           src={images.bottom}
           alt={`${position} Side Image Bottom`}
           width={200}
           height={600}
           quality={100}
-          className="w-auto h-full rounded-lg border border-neon-green shadow-custom"
+          className="w-auto h-full rounded-lg border border-neon-green shadow-custom opacity-0"
         />
         {activeNoiseID === generateUniqueID(position, "bottom") && (
           <div className="absolute inset-0 static-noise-effect"></div>

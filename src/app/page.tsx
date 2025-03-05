@@ -32,7 +32,7 @@ export default function AboutMe() {
           <SideImages
             position="left"
             images={{
-              top: "/images/about-2.jpg",
+              top: "/images/about-3.jpg",
               bottom: "/images/about-left-1.webp",
             }}
           />
