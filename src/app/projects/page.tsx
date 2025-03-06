@@ -5,9 +5,9 @@ import Link from "next/link";
 import Slider from "@/components/layout/Slider";
 
 const projects = [
-  { title: "Project 1", slug: "project-1" },
-  { title: "Project 2", slug: "project-2" },
-  { title: "Project 3", slug: "project-3" },
+  { title: "Task Time Calculator", slug: "project-1" },
+  { title: "Form Designer", slug: "project-2" },
+  { title: "Coming Soon", slug: "project-3" },
 ];
 
 export default function Projects() {

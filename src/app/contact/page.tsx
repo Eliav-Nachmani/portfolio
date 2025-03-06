@@ -68,16 +68,16 @@ export default function Contact() {
             }}
           >
             <p
-              className="text-lg md:text-xl lg:text-2xl font-bold text-neon-green tracking-wide opacity-60 break-words animate-flicker"
+              className="text-lg md:text-xl lg:text-2xl font-bold text-neon-green tracking-wide break-words animate-flicker"
             >
-              LET’S BUILD SOMETHING GOOD TOGETHER
+              LET'S CONNECT! 
             </p>
 
             <p
-              className="text-md md:text-lg lg:text-xl font-bold text-neon-green tracking-wide mt-4 opacity-60 break-words animate-flicker"
+              className="text-md md:text-lg lg:text-xl font-bold text-white tracking-wide mt-4 break-words animate-flicker"
               style={{ animationDelay: "0.5s" }}
             >
-              GET IN TOUCH!
+              I'm open to new opportunities and collaborations — reach out!
             </p>
           </div>
         </div>

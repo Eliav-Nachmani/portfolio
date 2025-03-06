@@ -1,6 +1,8 @@
+
+
 {
     "project-1": {
-      "name": "Project One",
+      "name": "Task Time Calculator",
       "image": "/images/project1-preview.webp",
       "details": "A short description of Project One.",
       "roles": ["UI/UX Designer", "Frontend Developer"],
@@ -9,7 +11,7 @@
       "github": "https://github.com/yourgithub/project1"
     },
     "project-2": {
-      "name": "Project Two",
+      "name": "Form Designer",
       "image": "/images/project2-preview.webp",
       "details": "A short description of Project Two.",
       "roles": ["Fullstack Developer"],
@@ -18,7 +20,7 @@
       "github": "https://github.com/yourgithub/project2"
     },
     "project-3": {
-      "name": "Project Three",
+      "name": "Coming Soon",
       "image": "/images/project3-preview.webp",
       "details": "A short description of Project Three.",
       "roles": ["Game Developer"],
