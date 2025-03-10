@@ -4,105 +4,171 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import projectData from "@/data/projects.json";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+
+const techIcons: Record<string, string> = {
+    "React": "react.webp",
+    "Next.js": "next.webp",
+    "TypeScript": "typescript.webp",
+    "Node.js": "node.webp",
+    "Express": "express.webp",
+    "MongoDB": "mongodb.webp",
+    "Framer Motion": "framer.webp",
+    "REST API": "restapi.webp",
+    "Auth0": "auth0.webp"
+};
 
 export default function ProjectPage() {
     const { slug } = useParams();
     const router = useRouter();
     const projectKeys = Object.keys(projectData);
     const currentIndex = projectKeys.indexOf(slug as string);
-    const prevProject = projectKeys[(currentIndex - 1 + projectKeys.length) % projectKeys.length]; // Loop back
-    const nextProject = projectKeys[(currentIndex + 1) % projectKeys.length]; // Loop forward
+    const prevProject = projectKeys[(currentIndex - 1 + projectKeys.length) % projectKeys.length];
+    const nextProject = projectKeys[(currentIndex + 1) % projectKeys.length];
     const project = slug ? projectData[slug as keyof typeof projectData] : null;
 
-    const [isMobile, setIsMobile] = useState(false);
+    const [isStacked, setIsStacked] = useState(false);
+    const demoButtonRef = useRef<HTMLButtonElement>(null);
+    const [buttonWidth, setButtonWidth] = useState<string>("auto");
 
     useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
+        const checkStack = () => {
+            setIsStacked(window.innerWidth < 1024); // Breaks at lg (1024px)
         };
-        checkMobile();
-        window.addEventListener("resize", checkMobile);
-        return () => window.removeEventListener("resize", checkMobile);
+        checkStack();
+        window.addEventListener("resize", checkStack);
+        return () => window.removeEventListener("resize", checkStack);
     }, []);
+
+    // Ensure GitHub button matches Live Demo button width
+    useEffect(() => {
+        if (demoButtonRef.current) {
+            setButtonWidth(`${demoButtonRef.current.offsetWidth}px`);
+        }
+    }, [isStacked]);
 
     if (!project) {
         return <div className="text-center text-neon-green mt-20">Project not found...</div>;
     }
 
     return (
-        <div className="relative flex flex-col min-h-screen bg-black text-white">
+        <div className="relative flex flex-col min-h-screen bg-black text-white pb-10 pt-2">
             {/* Background Image */}
-            <div
-                className="absolute inset-0"
-                style={{
-                    backgroundImage: "url('/images/project-bg.webp')",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                }}
-            />
-            <div className="absolute inset-0 bg-black opacity-10"></div>
+            <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-[url('/images/project-bg.webp')] bg-cover bg-center bg-no-repeat"></div>
+                <div className="absolute inset-0 bg-black opacity-30"></div>
+            </div>
 
-            {/* Navigation Arrows (Placed Outside the Columns) */}
-            <div className={`absolute ${isMobile ? "top-2 left-4 w-16" : "top-6 left-6 w-24"} z-50`}>
-                <button onClick={() => router.push(`/projects/${prevProject}`)} className="rounded-full hover:border hover:border-neon-green hover:shadow-[0_0_15px_#39ff14] transition-all">
+            {/* Navigation Arrows */}
+            <div className="absolute top-10 left-6 w-16 z-50">
+                <button
+                    onClick={() => router.push(`/projects/${prevProject}`)}
+                    className="rounded-full hover:border hover:border-neon-green hover:shadow-[0_0_15px_#39ff14] transition-all"
+                >
                     <Image
                         src="/images/arrow.png"
                         alt="Previous Project"
-                        width={100}
-                        height={100}
-                        className={`object-contain scale-x-[-1] ${isMobile ? "w-16 h-16" : "w-24 h-24"}`}
+                        width={isStacked ? 40 : 70}
+                        height={isStacked ? 40 : 70}
+                        className="object-contain scale-x-[-1]"
                         unoptimized
                     />
                 </button>
             </div>
-            <div className={`absolute ${isMobile ? "top-2 right-4 w-16" : "top-6 right-6 w-24"} z-50`}>
-                <button onClick={() => router.push(`/projects/${nextProject}`)} className="rounded-full hover:border hover:border-neon-green hover:shadow-[0_0_15px_#39ff14] transition-all">
+            <div className="absolute top-10 right-2 lg:right-6 w-16 z-50">
+                <button
+                    onClick={() => router.push(`/projects/${nextProject}`)}
+                    className="rounded-full hover:border hover:border-neon-green hover:shadow-[0_0_15px_#39ff14] transition-all"
+                >
                     <Image
                         src="/images/arrow.png"
                         alt="Next Project"
-                        width={100}
-                        height={100}
-                        className={`object-contain ${isMobile ? "w-16 h-16" : "w-24 h-24"}`}
+                        width={isStacked ? 40 : 70}
+                        height={isStacked ? 40 : 70}
+                        className="object-contain"
                         unoptimized
                     />
                 </button>
             </div>
 
             {/* Content Grid */}
-            <div className={`relative ${isMobile ? "flex flex-col items-center px-4 gap-6" : "grid grid-cols-12 gap-12 items-start px-8 h-[85vh]"}`}>
-                {/* Left Column - Project Name & Details */}
-                <div className={`${isMobile ? "w-full flex flex-col space-y-4 mt-[7rem]" : "col-span-3 flex flex-col justify-evenly h-full"}`}>
-                    <div className="border border-neon-green p-4 text-lg bg-black">{project.name}</div>
-                    <div className="border border-neon-green p-4 bg-black">{project.details}</div>
+            <div className={`relative ${isStacked ? "flex flex-col items-center px-4 gap-6 mt-4" : "grid grid-cols-12 gap-12 items-start px-8 h-[85vh]"}`}>
+
+                {/* Left Column - Project Details */}
+                <div className={`${isStacked ? "w-full flex flex-col space-y-6 order-1" : "col-span-3 flex flex-col justify-evenly h-full min-h-[250px] text-left"}`}>
+
+                    {/* Project Name Box */}
+                    <div className="border border-neon-green p-4 bg-black rounded-lg text-center lg:text-left">
+                        <span className="block text-neon-green text-lg font-bold mb-2">APP</span>
+                        {project.name}
+                    </div>
+
+                    {/* Description Box */}
+                    <div className="border border-neon-green p-4 bg-black rounded-lg">
+                        <span className="block text-neon-green text-lg font-bold mb-2">DESCRIPTION</span>
+                        {project.details}
+                    </div>
                 </div>
 
                 {/* Center - Project Image */}
-                <div className={`${isMobile ? "w-full" : "col-span-6 flex flex-col items-center"}`}>
-                    <div className="w-full flex items-center justify-center border-x border-b border-neon-green bg-black">
-                        <Image src={project.image} alt={project.name} width={700} height={400} className="w-full h-full object-cover" unoptimized />
-                    </div>
-                    
-                    {/* Buttons Under Image */}
-                    <div className={`flex ${isMobile ? "flex-col items-center space-y-4 mt-6" : "justify-center space-x-4 mt-6"}`}>
+                <div className={`${isStacked ? "w-full order-2" : "col-span-6 flex flex-col items-center"}`}>
+                    <div className="w-full flex items-center justify-center bg-black rounded-lg relative overflow-hidden group mt-0 lg:mt-6">
                         <Link href={project.liveDemo} target="_blank">
-                            <button className="border border-neon-green px-6 py-3 bg-black inline-flex items-center hover:bg-neon-green hover:text-black transition">
+                            {/* ✅ Correct Radial Gradient Overlay */}
+                            <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0)_50%,_rgba(0,255,0,0.3)_100%)] opacity-70 group-hover:opacity-0 transition-opacity duration-500"></div>
+                            <Image
+                                src={project.image}
+                                alt={project.name}
+                                width={700}
+                                height={400}
+                                className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:shadow-[0_0_20px_#39ff14]"
+                                unoptimized
+                            />
+                        </Link>
+                    </div>
+
+                    {/* Buttons Under Image */}
+                    <div className={`flex w-full ${isStacked ? "flex-col items-center space-y-4 mt-6" : "justify-center space-x-4 mt-6"}`}>
+                        <Link href={project.liveDemo} target="_blank">
+                            <button
+                                ref={demoButtonRef}
+                                className="border border-neon-green px-6 py-3 bg-black font-bold hover:bg-neon-green hover:text-black transition rounded-lg"
+                            >
                                 Live Demo
                             </button>
                         </Link>
                         <Link href={project.github} target="_blank">
-                            <button className="border border-neon-green px-6 py-3 bg-black inline-flex items-center font-bold hover:bg-neon-green hover:text-black transition">
+                            <button
+                                style={{ minWidth: buttonWidth }}
+                                className="border border-neon-green px-6 py-3 bg-black font-bold hover:bg-neon-green hover:text-black transition rounded-lg"
+                            >
                                 GitHub
                             </button>
                         </Link>
                     </div>
                 </div>
 
-                {/* Right Column - Roles & Technologies */}
-                <div className={`${isMobile ? "w-full flex flex-col space-y-4" : "col-span-3 flex flex-col justify-evenly h-full"}`}>
-                    <div className="border border-neon-green p-4 bg-black">Roles: {project.roles.join(", ")}</div>
-                    <div className="border border-neon-green p-4 bg-black">Tech: {project.technology.join(", ")}</div>
+                {/* Right Column - Role & Technologies */}
+                <div className={`${isStacked ? "w-full order-3 flex flex-col space-y-6" : "col-span-3 flex flex-col justify-evenly h-full min-h-[250px]"}`}>
+
+                    {/* Role Box */}
+                    <div className="border border-neon-green p-4 bg-black rounded-lg">
+                        <span className="block text-neon-green text-lg font-bold mb-2">ROLE</span>
+                        {project.roles.join(", ")}
+                    </div>
+
+                    {/* Technology Box */}
+                    <div className="border border-neon-green p-4 bg-black rounded-lg">
+                        <span className="block text-neon-green text-lg font-bold mb-2">TECH</span>
+                        <div className="grid grid-cols-2 gap-4 justify-items-center mt-2">
+                            {project.technology.map((tech, index) => (
+                                <div key={index} className="flex flex-col items-center">
+                                    <Image src={`/images/${techIcons[tech]}`} alt={tech} width={100} height={100} className="rounded-md" unoptimized />
+                                    <span className="mt-2 text-sm text-white">{tech}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

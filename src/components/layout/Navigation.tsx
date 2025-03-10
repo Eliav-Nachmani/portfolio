@@ -28,7 +28,7 @@ const Navigation = () => {
       {/* White Overlay */}
       <div className="absolute inset-0 bg-black opacity-50 pointer-events-none"></div>
 
-      {/* Navigation Buttons (Always Side-by-Side) */}
+      {/* Navigation Buttons (Wraps on Small Screens) */}
       <div className="relative flex flex-wrap justify-center gap-3 md:space-x-10">
         {[
           { label: "About Me", path: "/" },
@@ -43,7 +43,7 @@ const Navigation = () => {
               onClick={() => {
                 if (pathname !== path) {
                   setActiveButton(label);
-                  router.push(path); // Client-side navigation (prevents full reload)
+                  router.push(path);
                 }
               }}
               className={`relative text-sm md:text-lg px-4 md:px-8 py-2 md:py-4 font-semibold border border-neon-green rounded-md transition-all duration-300 transform 

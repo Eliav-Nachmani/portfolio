@@ -5,9 +5,9 @@ import Link from "next/link";
 import Slider from "@/components/layout/Slider";
 
 const projects = [
-  { title: "Task Time Calculator", slug: "project-1" },
-  { title: "Form Designer", slug: "project-2" },
-  { title: "Coming Soon", slug: "project-3" },
+  { title: "Task Time Calculator", slug: "task-time-calculator" },
+  { title: "Form Designer", slug: "form-builder" },
+  { title: "My Portfolio", slug: "portfolio" },
 ];
 
 export default function Projects() {
@@ -77,8 +77,8 @@ export default function Projects() {
                   }}
                 >
                   {/* Text Counter-Rotates to Stay Upright */}
-                  <span
-                    className="block"
+                  <h2
+                    className="block text-neon-green text-2xl hover-text-glow"
                     style={{
                       fontSize: textSize,
                       transform: `rotate(${rotation}deg)`,
@@ -86,7 +86,7 @@ export default function Projects() {
                     }}
                   >
                     {project.title}
-                  </span>
+                  </h2>
                 </div>
               </Link>
             );

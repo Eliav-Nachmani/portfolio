@@ -162,3 +162,13 @@
     transform: rotateY(180deg);
   }
   
+  /* Initial state: Front image fully covers the back image */
+.clip-hidden {
+  clip-path: inset(0 0 0 0); /* Fully visible */
+}
+
+/* Hover state: Reveal the back image from left to right */
+.clip-reveal {
+  clip-path: inset(0 100% 0 0); /* Hidden from left to right */
+  transition: clip-path 0.6s ease-in-out;
+}
