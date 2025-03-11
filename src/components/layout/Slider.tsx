@@ -56,10 +56,10 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
       ></div>
       {/* Custom Thumb (Wider on Desktop, Taller on Mobile) */}
 <div
-  className="absolute bg-neon-green border-4 border-neon-green shadow-[0_0_15px_#39ff14] pointer-events-none transition-transform rounded-md"
+  className="absolute bg-neon-green border-4 border-neon-green shadow-[0_0_15px_#000] pointer-events-none transition-transform rounded-md"
   style={{
-    width: isMobile ? "30px" : "80px", // Narrow on mobile, wide on desktop
-    height: isMobile ? "50px" : "30px", // Taller on mobile, shorter on desktop
+    width: isMobile ? "20px" : "70px", // Narrow on mobile, wide on desktop
+    height: isMobile ? "50px" : "20px", // Taller on mobile, shorter on desktop
     [isMobile ? "left" : "top"]: `${(value / 180) * 100}%`, // Positions correctly
     transform: isMobile ? "translateX(-50%)" : "translateY(-50%)",
   }}
