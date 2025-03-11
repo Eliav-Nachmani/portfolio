@@ -5,7 +5,7 @@ import Image from "next/image";
 const techStack = [
   { front: "react.webp", back: "typescript.webp", label: "React", backLabel: "TypeScript" },
   { front: "next.webp", back: "express.webp", label: "Next.js", backLabel: "Express.js" },
-  { front: "node.webp", back: "autho.webp", label: "Node.js", backLabel: "Auth0" },
+  { front: "node.webp", back: "auth0.webp", label: "Node.js", backLabel: "Auth0" },
   { front: "mongodb.webp", back: "restapi.webp", label: "MongoDB", backLabel: "REST API" },
 ];
 
@@ -17,19 +17,16 @@ const BioText = () => {
       </h1>
 
       <p className="text-md text-white leading-relaxed mb-6 text-center">
-        Hi, I'm ELIAV NACHMANI,<br />
-        I’m a front-end developer & digital designer with a passion for crafting sleek, high-performance web experiences using React, Next.js, and UI/UX principles.
-        I thrive on creating visually striking, highly interactive interfaces that not only look great but also deliver seamless user experiences.
+        Hi, I'm <span className="font-bold">Eliav Nachmani</span>.<br /><br />
+        I build web applications that are efficient, structured, and easy to maintain. My work is mostly focused on React and Next.js, but I also handle backend development when needed, working with Node.js, MongoDB, and REST&nbsp;APIs.
       </p>
 
       <p className="text-md text-white leading-relaxed mb-6 text-center max-w-3xl mx-auto">
-        I build structured, scalable applications with a focus on efficiency and performance.
-        Every project starts with clean, maintainable code, ensuring long-term reliability.
+      Coming from a digital design background, I care about how things look and feel, but just as much about how they’re built. My goal is always to write clean, logical code that makes development smoother and the end product&nbsp;better.
       </p>
 
       <p className="text-md text-white leading-relaxed mb-6 text-center max-w-3xl mx-auto">
-        Beyond functionality, I care about usability. I bridge logic and design to create
-        seamless experiences that are intuitive and polished.
+      I’m always refining workflows, improving processes, and finding better ways to build&nbsp;things.
       </p>
 
       <h2 className="text-3xl font-bold text-neon-green mb-6 text-center">

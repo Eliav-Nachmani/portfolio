@@ -15,7 +15,8 @@ const techIcons: Record<string, string> = {
     "MongoDB": "mongodb.webp",
     "Framer Motion": "framer.webp",
     "REST API": "restapi.webp",
-    "Auth0": "auth0.webp"
+    "Auth0": "auth0.webp",
+    "Tailwind CSS": "Tailwind-CSS.webp"
 };
 
 export default function ProjectPage() {
@@ -114,8 +115,6 @@ export default function ProjectPage() {
                 <div className={`${isStacked ? "w-full order-2" : "col-span-6 flex flex-col items-center"}`}>
                     <div className="w-full flex items-center justify-center bg-black rounded-lg relative overflow-hidden group mt-0 lg:mt-6">
                         <Link href={project.liveDemo} target="_blank">
-                            {/* ✅ Correct Radial Gradient Overlay */}
-                            <div className="absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0)_50%,_rgba(0,255,0,0.3)_100%)] opacity-70 group-hover:opacity-0 transition-opacity duration-500"></div>
                             <Image
                                 src={project.image}
                                 alt={project.name}

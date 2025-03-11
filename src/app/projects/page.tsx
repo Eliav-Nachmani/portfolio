@@ -2,13 +2,31 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Slider from "@/components/layout/Slider";
 
-const projects = [
-  { title: "Task Time Calculator", slug: "task-time-calculator" },
-  { title: "Form Designer", slug: "form-builder" },
-  { title: "My Portfolio", slug: "portfolio" },
-];
+// Project Data with Image Paths
+const projectData = {
+  "task-time-calculator": {
+    name: "Task Time Calculator",
+    image: "/images/ttc.png",
+  },
+  "form-builder": {
+    name: "Form Builder",
+    image: "/images/form-builder.png",
+  },
+  "portfolio": {
+    name: "My Portfolio",
+    image: "/images/project3-preview.webp",
+  },
+};
+
+// Convert object to array format for easy mapping
+const projects = Object.entries(projectData).map(([slug, { name, image }]) => ({
+  title: name,
+  slug,
+  image,
+}));
 
 export default function Projects() {
   const [rotation, setRotation] = useState(0);
@@ -50,23 +68,17 @@ export default function Projects() {
           }}
         >
           {projects.map((project, index) => {
-  // ✅ Desktop: Fixed size | Mobile: 2 circles fill full width
-  const circleSize = isMobile
-    ? `${windowSize / 2.2}px` // Ensures 2 circles fit side by side
-    : "288px";
-
-  const textSize = isMobile
-    ? `${Math.max(1.2, Math.min(2.5, windowSize / 600))}rem`
-    : "text-2xl";
-
-  const spacing = isMobile
-    ? `${-windowSize / 3.7}px` // Positions circles evenly
-    : "-170px";
+            // ✅ Desktop: Fixed size | Mobile: Adjust to fit 2 circles side by side
+            const circleSize = isMobile ? `${windowSize / 2.2}px` : "288px";
+            const textSize = isMobile
+              ? `${Math.max(1.2, Math.min(2.5, windowSize / 600))}rem`
+              : "text-2xl";
+            const spacing = isMobile ? `${-windowSize / 3.7}px` : "-170px";
 
             return (
               <Link key={index} href={`/projects/${project.slug}`} className="absolute">
                 <div
-                  className="absolute bg-black border border-neon-green rounded-full flex items-center justify-center text-center font-bold cursor-pointer"
+                  className="absolute border border-neon-green rounded-full flex items-center justify-center text-center font-bold cursor-pointer bg-black overflow-hidden"
                   style={{
                     width: circleSize,
                     height: circleSize,
@@ -76,13 +88,22 @@ export default function Projects() {
                     transition: "transform 0.5s ease-out",
                   }}
                 >
-                  {/* Text Counter-Rotates to Stay Upright */}
+                  {/* Project Image Inside Circle */}
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    width={300}
+                    height={300}
+                    className="absolute w-full h-full object-cover rounded-full opacity-10 transition-opacity duration-500"
+                    unoptimized
+                  />
+
+                  {/* Text Overlay */}
                   <h2
-                    className="block text-neon-green text-2xl hover-text-glow"
+                    className="absolute text-neon-green text-2xl hover-text-glow px-4 py-2 rounded-md transition-all duration-300"
                     style={{
                       fontSize: textSize,
                       transform: `rotate(${rotation}deg)`,
-                      transition: "transform 0.5s ease-out",
                     }}
                   >
                     {project.title}

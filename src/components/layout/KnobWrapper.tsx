@@ -33,7 +33,7 @@ const KnobWrapper = ({ children }: { children: React.ReactNode }) => {
       {children}
 
       {/* Pass Theme Control to Knob */}
-      <div className="absolute bottom-6 left-6 z-50">
+      <div className="absolute bottom-10 left-6 z-50">
         <Knob setTheme={setTheme} /> {/* Pass the setTheme function */}
       </div>
     </div>
