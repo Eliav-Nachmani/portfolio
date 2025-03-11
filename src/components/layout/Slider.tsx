@@ -21,7 +21,7 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = Number(event.target.value);
-    if (newValue > 180) newValue = 180; // ✅ Both Desktop & Mobile limited to 180°
+    if (newValue > 180) newValue = 180; // ✅ Limit rotation to 180°
     if (newValue < 0) newValue = 0;
     onChange(newValue);
   };
@@ -30,9 +30,9 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
     <div
       className={`absolute ${
         isMobile
-          ? "top-5 left-1/2 transform -translate-x-1/2 w-[80%] h-4"
-          : "right-10 top-1/2 transform -translate-y-1/2 w-4 h-64"
-      } bg-black border border-neon-green rounded-full flex justify-center items-center shadow-neon`}
+          ? "top-5 left-1/2 transform -translate-x-1/2 w-[85%] h-6" // Mobile: Bigger, horizontally placed
+          : "right-20 top-1/2 transform -translate-y-1/2 w-6 h-80" // Desktop: Closer, Bigger
+      } bg-black border border-neon-green rounded-full flex justify-center items-center shadow-[0_0_20px_#39ff14]`}
     >
       {/* Hidden Native Slider */}
       <input
@@ -48,18 +48,23 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
           WebkitAppearance: "none",
         }}
       />
-      {/* Custom Track */}
+      {/* Custom Track (Bigger & More Visible) */}
       <div
-        className={`absolute ${isMobile ? "h-1 w-full" : "w-1 h-[90%]"} bg-neon-green rounded-full opacity-50`}
+        className={`absolute ${
+          isMobile ? "h-2 w-full" : "w-2 h-[92%]"
+        } bg-neon-green rounded-full opacity-80`}
       ></div>
-      {/* Custom Thumb */}
-      <div
-        className="absolute w-6 h-6 bg-neon-green border-2 border-neon-green rounded-full shadow-lg pointer-events-none transition-transform"
-        style={{
-          [isMobile ? "left" : "top"]: `${(value / 180) * 100}%`,
-          transform: isMobile ? "translateX(-50%)" : "translateY(-50%)",
-        }}
-      ></div>
+      {/* Custom Thumb (Wider on Desktop, Taller on Mobile) */}
+<div
+  className="absolute bg-neon-green border-4 border-neon-green shadow-[0_0_15px_#39ff14] pointer-events-none transition-transform rounded-md"
+  style={{
+    width: isMobile ? "30px" : "80px", // Narrow on mobile, wide on desktop
+    height: isMobile ? "50px" : "30px", // Taller on mobile, shorter on desktop
+    [isMobile ? "left" : "top"]: `${(value / 180) * 100}%`, // Positions correctly
+    transform: isMobile ? "translateX(-50%)" : "translateY(-50%)",
+  }}
+></div>
+
     </div>
   );
 };
