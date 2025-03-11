@@ -12,7 +12,7 @@ export default function Contact() {
         <div className="col-span-3 flex flex-col items-center justify-center space-y-16 bg-black md:space-y-24">
           <div className="grid grid-cols-3 gap-6 md:flex md:flex-col md:space-y-16">
             {/* Email Icon */}
-            <Link href="mailto:your@email.com" target="_blank">
+            <Link href="mailto:eliavyep@gmail.com" target="_blank">
               <Image
                 src="/images/email-icon.webp"
                 alt="Email"
@@ -23,7 +23,7 @@ export default function Contact() {
             </Link>
 
             {/* LinkedIn Icons */}
-            <Link href="https://linkedin.com/in/yourprofile" target="_blank">
+            <Link href="https://www.linkedin.com/in/eliav-nachmani/" target="_blank">
               <Image
                 src="/images/linkedin-icon.webp"
                 alt="LinkedIn"
@@ -33,10 +33,10 @@ export default function Contact() {
               />
             </Link>
 
-            <Link href="https://linkedin.com/in/yourprofile" target="_blank">
+            <Link href="Eliav_Nachmani_Resume_2025.pdf" target="_blank" download>
               <Image
-                src="/images/linkedin-icon.webp"
-                alt="LinkedIn"
+                src="/images/resume.webp"
+                alt="Resume"
                 width={80} // Mobile size
                 height={80}
                 className="md:w-[120px] md:h-[120px] cursor-pointer border-2 border-neon-green rounded-lg transition-all duration-300 hover:shadow-[0_0_15px_#39ff14]"
