@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
 const techStack = [
   { front: "react.webp", back: "typescript.webp", label: "React", backLabel: "TypeScript" },
@@ -22,11 +23,7 @@ const BioText = () => {
       </p>
 
       <p className="text-md text-white leading-relaxed mb-6 text-center max-w-3xl mx-auto">
-      Coming from a digital design background, I care about how things look and feel, but just as much about how they’re built. My goal is always to write clean, logical code that makes development smoother and the end product&nbsp;better.
-      </p>
-
-      <p className="text-md text-white leading-relaxed mb-6 text-center max-w-3xl mx-auto">
-      I’m always refining workflows, improving processes, and finding better ways to build&nbsp;things.
+        Coming from a digital design background, I care about how things look and feel, but just as much about how they’re built. My goal is always to write clean, logical code that makes development smoother and the end product&nbsp;better.
       </p>
 
       <h2 className="text-3xl font-bold text-neon-green mb-6 text-center">
@@ -36,17 +33,33 @@ const BioText = () => {
       {/* Responsive Technology Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
         {techStack.map((tech, index) => (
-          <div key={index} className="flex flex-col items-center justify-center w-32 h-32 cursor-pointer group overflow-hidden rounded-lg relative">
-            {/* Front Icon & Label */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 md:group-hover:-translate-x-full">
-              <Image src={`/images/${tech.front}`} alt={tech.label} width={80} height={80} className="rounded-md object-contain" />
-              <span className="mt-2 text-sm text-white">{tech.label}</span>
-            </div>
+          <div key={index} className="flip-container group">
+            <div className="flip-inner">
+              {/* Front Icon & Label */}
+              <div className="flip-front flex flex-col items-center justify-center w-32 h-32 rounded-lg bg-black relative group-hover:static-noise-hover">
+                <div className="relative w-16 h-16"> {/* Adjust size as needed */}
+                  <Image
+                    src={`/images/${tech.front}`}
+                    alt={tech.label}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <span className="mt-2 text-sm text-white">{tech.label}</span>
+              </div>
 
-            {/* Back Icon & Label (Revealed on Hover, Only on Desktop) */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center transition-all duration-500 translate-x-full md:group-hover:translate-x-0">
-              <Image src={`/images/${tech.back}`} alt={tech.backLabel} width={80} height={80} className="rounded-md object-contain" />
-              <span className="mt-2 text-sm text-white">{tech.backLabel}</span>
+              {/* Back Icon & Label */}
+              <div className="flip-back flex flex-col items-center justify-center w-32 h-32 rounded-lg bg-black relative group-hover:static-noise-hover">
+                <div className="relative w-16 h-16"> {/* Adjust size as needed */}
+                  <Image
+                    src={`/images/${tech.back}`}
+                    alt={tech.backLabel}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <span className="mt-2 text-sm text-white">{tech.backLabel}</span>
+              </div>
             </div>
           </div>
         ))}

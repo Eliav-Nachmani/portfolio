@@ -49,7 +49,7 @@ export default function Projects() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: "url('/images/projects-bg.webp')",
+          backgroundImage: "url('/images/main-page-bg.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -78,7 +78,7 @@ export default function Projects() {
             return (
               <Link key={index} href={`/projects/${project.slug}`} className="absolute">
                 <div
-                  className="absolute border border-neon-green rounded-full flex items-center justify-center text-center font-bold cursor-pointer bg-black overflow-hidden"
+                  className="absolute rounded-full border-2 border-neon-green flex items-center justify-center text-center font-bold cursor-pointer overflow-hidden hover-text-glow"
                   style={{
                     width: circleSize,
                     height: circleSize,
@@ -88,22 +88,42 @@ export default function Projects() {
                     transition: "transform 0.5s ease-out",
                   }}
                 >
-                  {/* Project Image Inside Circle */}
+                  {/* Sphere Background Image */}
+                  <Image
+                    src="/images/sphere.png"
+                    alt="Background Sphere"
+                    width={300}
+                    height={300}
+                    className="absolute w-full h-full object-cover rounded-full"
+                    style={{
+                      transform: `rotate(${rotation}deg)`, // 🔄 Rotate with slider
+                      transition: "transform 0.5s ease-out",
+                    }}
+                    unoptimized
+                  />
+
+                  {/* Project Image Overlay (20% Opacity) - Now Rotates */}
                   <Image
                     src={project.image}
+                    // src="/images/about-4.jpg"
                     alt={project.title}
                     width={300}
                     height={300}
                     className="absolute w-full h-full object-cover rounded-full opacity-10 transition-opacity duration-500"
+                    // style={{
+                    //   transform: `rotate(${rotation}deg)`, // 🔄 Rotate with slider
+                    //   transition: "transform 0.5s ease-out",
+                    // }}
                     unoptimized
                   />
 
-                  {/* Text Overlay */}
+                  {/* Text Overlay (Also Rotates) */}
                   <h2
-                    className="absolute text-neon-green text-2xl hover-text-glow px-4 py-2 rounded-md transition-all duration-300"
+                    className="absolute text-neon-green text-2xl px-4 py-2 rounded-md transition-all duration-300"
                     style={{
                       fontSize: textSize,
-                      transform: `rotate(${rotation}deg)`,
+                      transform: `rotate(${rotation}deg)`, // 🔄 Rotate with slider
+                      transition: "transform 0.5s ease-out",
                     }}
                   >
                     {project.title}
@@ -120,3 +140,4 @@ export default function Projects() {
     </div>
   );
 }
+

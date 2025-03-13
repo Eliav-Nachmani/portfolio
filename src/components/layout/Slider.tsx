@@ -21,7 +21,7 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = Number(event.target.value);
-    if (newValue > 180) newValue = 180; // ✅ Limit rotation to 180°
+    if (newValue > 360) newValue = 360; // ✅ Limit rotation to 360°
     if (newValue < 0) newValue = 0;
     onChange(newValue);
   };
@@ -38,7 +38,7 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
       <input
         type="range"
         min="0"
-        max="180" // ✅ Same limit for both desktop & mobile
+        max="360" // ✅ Now supports full 360-degree rotation
         step="1"
         value={value}
         onChange={handleChange}
@@ -55,16 +55,15 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
         } bg-neon-green rounded-full opacity-80`}
       ></div>
       {/* Custom Thumb (Wider on Desktop, Taller on Mobile) */}
-<div
-  className="absolute bg-neon-green border-4 border-neon-green shadow-[0_0_15px_#000] pointer-events-none transition-transform rounded-md"
-  style={{
-    width: isMobile ? "20px" : "70px", // Narrow on mobile, wide on desktop
-    height: isMobile ? "50px" : "20px", // Taller on mobile, shorter on desktop
-    [isMobile ? "left" : "top"]: `${(value / 180) * 100}%`, // Positions correctly
-    transform: isMobile ? "translateX(-50%)" : "translateY(-50%)",
-  }}
-></div>
-
+      <div
+        className="absolute bg-neon-green border-4 border-neon-green shadow-[0_0_15px_#000] pointer-events-none transition-transform rounded-md"
+        style={{
+          width: isMobile ? "20px" : "70px", // Narrow on mobile, wide on desktop
+          height: isMobile ? "50px" : "20px", // Taller on mobile, shorter on desktop
+          [isMobile ? "left" : "top"]: `${(value / 360) * 100}%`, // Positions correctly
+          transform: isMobile ? "translateX(-50%)" : "translateY(-50%)",
+        }}
+      ></div>
     </div>
   );
 };
