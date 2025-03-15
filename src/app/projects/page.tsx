@@ -105,11 +105,11 @@ export default function Projects() {
                   {/* Project Image Overlay (20% Opacity) - Now Rotates */}
                   <Image
                     src={project.image}
-                    // src="/images/about-4.jpg"
+                    // src="/images/arrow.png"
                     alt={project.title}
                     width={300}
                     height={300}
-                    className="absolute w-full h-full object-cover rounded-full opacity-30 transition-opacity duration-500 mix-blend-multiply"
+                    className="absolute w-full h-full object-cover rounded-full opacity-20 transition-opacity duration-500 mix-blend-"
                     // style={{
                     //   transform: `rotate(${rotation}deg)`, // 🔄 Rotate with slider
                     //   transition: "transform 0.5s ease-out",

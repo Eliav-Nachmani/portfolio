@@ -27,7 +27,7 @@ const SideImages: React.FC<SideImagesProps> = ({ position, images }) => {
         onMouseEnter={() => setHoveredCard("top")}
         onMouseLeave={() => setHoveredCard(null)}
       >
-        {/* ✅ LEFT SIDE: Keep Back Image */}
+        {/* ✅ LEFT SIDE */}
         {position === "left" && (
           <Image
             src="/images/Headshot.jpg"
