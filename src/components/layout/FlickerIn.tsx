@@ -10,7 +10,7 @@ const FlickerIn = ({ children }: { children: React.ReactNode }) => {
         opacity: [0, 1, 0, 1, 0, 1], // Flickers in randomly
       }}
       transition={{
-        duration: 1.5, // Slower flicker effect
+        duration: 3, // Slower flicker effect
         times: [0, 0.2, 0.4, 0.7, 0.9, 1],
         ease: "easeInOut",
       }}

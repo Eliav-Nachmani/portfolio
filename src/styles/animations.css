@@ -211,3 +211,17 @@
 .grow {
   animation: subtleGrow 4s ease-in-out infinite;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 4s ease-in-out forwards;
+}
+

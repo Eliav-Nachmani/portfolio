@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import FlickerIn from "@/components/layout/FlickerIn";
 
 
 
@@ -71,16 +72,18 @@ export default function Contact() {
 
             {/* Text Inside Chip - Fully Contained with Padding & Centered */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-14 max-w-[60%] mx-auto rotate-[42deg] skew-x-[-10deg] -mt-[40px] sm:-mt-[100px] ">
-              <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-neon-green tracking-wide animate-flicker leading-[1] ">
+             
+              <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-neon-green tracking-wide animate-flicker leading-[1] fade-in">
                 Let's Connect!
               </h1>
-
+              
               <h2
-                className="text-sm md:text-lg lg:text-xl text-white tracking-wide mt-4 animate-flicker leading-[1]"
-                style={{ animationDelay: "0.5s" }}
+                className="fade-in text-sm md:text-lg lg:text-xl text-white tracking-wide mt-6 animate-flicker leading-[1] "
+                
               >
-                I'm open to new opportunities and collaborations — reach out!
+                I'm open to new opportunities and collaborations.<br /><br /><b>reach out!</b>
               </h2>
+            
             </div>
           </div>
         </div>

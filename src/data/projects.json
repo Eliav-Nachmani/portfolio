@@ -2,7 +2,7 @@
   "task-time-calculator": {
     "name": "Task Time Calculator",
     "image": "/images/ttc.png",
-    "details": "A web app for tracking and managing time spent on tasks. Users can add tasks, run timers, and review accumulated time to optimize productivity. The sleek UI and real-time updates ensure a seamless experience.",
+    "details": "A web app for tracking and managing time spent on tasks. Users can add tasks, run timers, and review accumulated time to optimize productivity. With real-time updates to ensure a error free experience.",
     "roles": ["Frontend Developer"],
     "technology": ["React", "Node.js"],
     "liveDemo": "https://task-time-calculator-ten.vercel.app/",
@@ -11,7 +11,7 @@
   "form-builder": {
     "name": "Form Builder",
     "image": "/images/form-builder.png",
-    "details": "A web app for creating Salesforce Pardot forms with a click-to-add interface. Users can build, preview, and export structured forms for seamless integration into marketing workflows.",
+    "details": "A web app for creating Salesforce Pardot forms with a click-to-add interface. Users can build, preview, and export structured forms for an easy integration into marketing workflows.",
     "roles": ["Fullstack Developer"],
     "technology": ["React", "TypeScript", "Node.js"],
     "liveDemo": "https://form-builder-lyart-seven.vercel.app/",
@@ -20,7 +20,7 @@
   "portfolio": {
     "name": "Portfolio Website",
     "image": "/images/project3-preview.webp",
-    "details": "A futuristic portfolio site showcasing my work in front-end development and UI/UX design. Built with Next.js and Tailwind CSS, it features smooth animations, interactive transitions, and detailed project case studies.",
+    "details": "My portfolio site showcasing my work in front-end development and UI/UX design. Built with Next.js and Tailwind CSS.",
     "roles": ["Designer", "Frontend Developer"],
     "technology": ["React", "Next.js", "Tailwind CSS"],
     "liveDemo": "https://example.com/project3",
