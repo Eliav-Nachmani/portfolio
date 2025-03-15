@@ -109,7 +109,7 @@ export default function Projects() {
                     alt={project.title}
                     width={300}
                     height={300}
-                    className="absolute w-full h-full object-cover rounded-full opacity-10 transition-opacity duration-500"
+                    className="absolute w-full h-full object-cover rounded-full opacity-30 transition-opacity duration-500 mix-blend-multiply"
                     // style={{
                     //   transform: `rotate(${rotation}deg)`, // 🔄 Rotate with slider
                     //   transition: "transform 0.5s ease-out",
@@ -119,7 +119,7 @@ export default function Projects() {
 
                   {/* Text Overlay (Also Rotates) */}
                   <h2
-                    className="absolute text-neon-green text-2xl px-4 py-2 rounded-md transition-all duration-300"
+                    className="absolute text-neon-green text-2xl px-4 py-2 rounded-md transition-all duration-300 opacity-100 mix-blend-plus-lighter"
                     style={{
                       fontSize: textSize,
                       transform: `rotate(${rotation}deg)`, // 🔄 Rotate with slider
