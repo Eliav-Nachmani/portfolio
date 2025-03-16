@@ -29,16 +29,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen bg-black text-white`}
       >
-        {/* Color Overlay */}
-        <div
-          id="color-overlay"
-          className="absolute inset-0 z-50 pointer-events-none transition-all duration-500"
-          style={{
-            mixBlendMode: "multiply",
-            backgroundColor: "rgba(0, 255, 0, 0.2)", // Default to green tint
-          }}
-        ></div>
-
         {/* Wrap the app inside KnobWrapper & ClientWrapper */}
         <KnobWrapper>
           <ClientWrapper>{children}</ClientWrapper> 

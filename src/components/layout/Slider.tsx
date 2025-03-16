@@ -30,8 +30,8 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
     <div
       className={`absolute ${
         isMobile
-          ? "top-5 left-1/2 transform -translate-x-1/2 w-[85%] h-6" // Mobile: Bigger, horizontally placed
-          : "right-20 top-1/2 transform -translate-y-1/2 w-6 h-80" // Desktop: Closer, Bigger
+          ? "top-[5%] left-[50%] transform -translate-x-1/2 w-[85%] h-6" // Mobile: Bigger, horizontally placed
+          : "right-[8%] lg:right-[18%] top-[45%] transform -translate-y-1/2 w-6 h-80" // Desktop: Closer, Bigger
       } bg-black border border-neon-green rounded-full flex justify-center items-center shadow-[0_0_20px_#39ff14]`}
     >
       {/* Hidden Native Slider */}

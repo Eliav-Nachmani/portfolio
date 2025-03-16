@@ -26,10 +26,10 @@ const Navigation = () => {
       }}
     >
       {/* White Overlay */}
-      <div className="absolute inset-0 bg-black opacity-50 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-black opacity-35 pointer-events-none"></div>
 
       {/* Navigation Buttons (Wraps on Small Screens) */}
-      <div className="relative flex flex-wrap justify-center gap-3 md:space-x-10">
+      <div className="relative flex flex-wrap justify-center gap-3 md:space-x-10 smaller:flex-col smaller:flex-row">
         {[
           { label: "About Me", path: "/" },
           { label: "Projects", path: "/projects" },
@@ -46,7 +46,7 @@ const Navigation = () => {
                   router.push(path);
                 }
               }}
-              className={`relative text-sm md:text-lg px-4 md:px-8 py-2 md:py-4 font-semibold border border-neon-green rounded-md transition-all duration-300 transform 
+              className={`relative text-sm md:text-lg px-4 md:px-8 py-2 md:py-4 font-semibold border border-neon-green rounded-md transition-all duration-500 ease-in-out transform 
                 ${
                   isActive
                     ? "bg-white text-black border-neon-green shadow-[inset_0_0_50px_#39ff14] translate-y-[1px]"

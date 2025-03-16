@@ -78,8 +78,8 @@ const SideImages: React.FC<SideImagesProps> = ({ position, images }) => {
         >
           <h2 className="text-xs md:text-sm mb-5">
             {position === "left"
-              ? "A couple more Tech & Dev Tools I've been working with"
-              : "I also worked a lot with these Design & Management Tools"}
+              ? "Tech & Dev Tools I've been working with:"
+              : "Design & Management Tools I'm experienced with:"}
           </h2>
           
           <p className="text-neon-green text-xs lg:text-lg xl:text-xl 2xl:text-2xl font-bold mt-2">

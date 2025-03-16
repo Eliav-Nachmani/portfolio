@@ -13,8 +13,12 @@ export default {
         'neon-green': '#00ff00', // ✅ Now Tailwind recognizes bg-neon-green
         'dark-bg': '#0a0a0a',
       },
+      screens: {
+        smaller: { max: "500px" }, // ✅ Custom breakpoint for screens below 500px
+      },
     },
   },
+  
   plugins: [
     function ({ addUtilities }) {
       addUtilities({
