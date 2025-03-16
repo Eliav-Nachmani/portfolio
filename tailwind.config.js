@@ -14,7 +14,8 @@ export default {
         'dark-bg': '#0a0a0a',
       },
       screens: {
-        smaller: { max: "500px" }, // ✅ Custom breakpoint for screens below 500px
+        smaller: { max: "500px" },
+        "custom-lg": "1024px",
       },
     },
   },

@@ -40,7 +40,7 @@ export default function AboutMe() {
         </div>
 
         {/* About Me Section (Now Fully Visible & Scrolls If Needed) */}
-        <div className="col-span-1 sm:col-span-4 md:col-span-8 flex items-center justify-center h-full z-10">
+        <div className="col-span-1 sm:col-span-4 md:col-span-8 flex items-center justify-center h-full w-full z-10">
           <div className="w-full max-w-3xl flex flex-col justify-center items-center p-6 sm:p-10 border border-neon-green bg-black text-center rounded-lg">
             <BioText />
           </div>
