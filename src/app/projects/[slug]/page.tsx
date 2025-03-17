@@ -146,7 +146,7 @@ export default function ProjectPage() {
                 ref={demoButtonRef}
                 className="border border-gray-500 px-6 py-3 bg-gray-700 font-bold text-white rounded-lg transition-all duration-300 hover:bg-gray-500 hover:text-gray-300"
             >
-                You're already here
+                You&apos;re already here
             </button>
         ) : (
             <Link href={project.liveDemo} target="_blank">
