@@ -10,26 +10,41 @@ const Knob: React.FC<KnobProps> = ({ setAngle }) => {
   const [angle, setLocalAngle] = useState(-120);
   const knobRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseDown = (event: React.MouseEvent) => {
+  const handleStart = (event: React.MouseEvent | React.TouchEvent) => {
     event.preventDefault();
-    const startY = event.clientY;
-const startAngle = angle;
+    
+    // Determine if it's a touch or mouse event
+    const startY =
+      "touches" in event
+        ? (event as React.TouchEvent).touches[0].clientY
+        : (event as React.MouseEvent).clientY;
+    
+    const startAngle = angle;
 
-    const handleMouseMove = (moveEvent: MouseEvent) => {
-      const deltaY = startY - moveEvent.clientY;
-const newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 2.5));
+    const handleMove = (moveEvent: MouseEvent | TouchEvent) => {
+      let moveY =
+        "touches" in moveEvent
+          ? (moveEvent as TouchEvent).touches[0].clientY
+          : (moveEvent as MouseEvent).clientY;
+
+      let deltaY = startY - moveY;
+      let newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 2.5));
 
       setLocalAngle(newAngle);
       setAngle(newAngle);
     };
 
-    const handleMouseUp = () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+    const handleEnd = () => {
+      document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("mouseup", handleEnd);
+      document.removeEventListener("touchmove", handleMove);
+      document.removeEventListener("touchend", handleEnd);
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener("mousemove", handleMove);
+    document.addEventListener("mouseup", handleEnd);
+    document.addEventListener("touchmove", handleMove, { passive: false });
+    document.addEventListener("touchend", handleEnd);
   };
 
   return (
@@ -37,10 +52,7 @@ const newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 2.5));
       {/* SVG for Circular Text */}
       <svg className="absolute -top-6 w-24 h-24" viewBox="0 0 100 100">
         <defs>
-          <path
-            id="curve"
-            d="M 10,50 A 40,40 0 1,1 90,50" // Creates a half-circle path
-          />
+          <path id="curve" d="M 10,50 A 40,40 0 1,1 90,50" />
         </defs>
         <text className="fill-white text-[10px] font-normal uppercase tracking-wide">
           <textPath href="#curve" startOffset="0%" textAnchor="start">
@@ -52,7 +64,8 @@ const newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 2.5));
       {/* Knob */}
       <div
         ref={knobRef}
-        onMouseDown={handleMouseDown}
+        onMouseDown={(e) => handleStart(e)}
+        onTouchStart={(e) => handleStart(e)}
         className="relative w-12 h-12 bg-gray-900 border-4 border-neon-green rounded-full shadow-neon select-none flex items-center justify-center"
         style={{
           transform: `rotate(${angle}deg)`,

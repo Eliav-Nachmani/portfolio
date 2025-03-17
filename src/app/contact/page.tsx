@@ -51,7 +51,7 @@ export default function Contact() {
                 </svg>
 
                 {/* Icons */}
-                <Link href={href} target="_blank">
+                <Link href={href} target="_blank" className="relative z-50 block">
                   <Image
                     src={src}
                     alt={label}
