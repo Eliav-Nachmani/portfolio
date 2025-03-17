@@ -1,10 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  devIndicators: {
-    buildActivity: false, // Hide "building..." indicator
-    buildActivityPosition: "bottom-right", // Optional: moves activity indicator
-    appIsrStatus: false, // Hides ISR status (if applicable)
+  reactStrictMode: true, // ✅ Helps catch potential React issues
+  compiler: {
+    styledComponents: true, // ✅ Enable better styled-components performance (if used)
   },
 };
 
