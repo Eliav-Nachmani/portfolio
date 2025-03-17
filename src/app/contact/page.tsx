@@ -82,11 +82,11 @@ export default function Contact() {
             {/* Text Inside Chip - Fully Contained with Padding & Centered */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-14 max-w-[60%] mx-auto rotate-[42deg] skew-x-[-10deg] -mt-[40px] sm:-mt-[100px] ">
               <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-neon-green tracking-wide animate-flicker leading-[1] fade-in">
-                Let's Connect!
+              Let&apos;s Connect!
               </h1>
 
               <h2 className="fade-in text-sm md:text-lg lg:text-xl text-white tracking-wide mt-6 animate-flicker leading-[1] ">
-                I'm open to new opportunities and collaborations.<br /><br /><b>Reach out!</b>
+              I&apos;m open to new opportunities and collaborations.<br /><br /><b>Reach out!</b>
               </h2>
             </div>
           </div>

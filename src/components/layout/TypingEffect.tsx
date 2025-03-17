@@ -62,7 +62,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
     }
 
     return () => clearTimeout(timeout);
-  }, [typingIndex, text, speed, delay, onComplete]);
+  }, [typingIndex, text, speed, delay, onComplete, sessionKey]);
 
   return (
     <span className={`whitespace-pre-wrap ${className}`}>

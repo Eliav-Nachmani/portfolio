@@ -12,12 +12,12 @@ const Knob: React.FC<KnobProps> = ({ setAngle }) => {
 
   const handleMouseDown = (event: React.MouseEvent) => {
     event.preventDefault();
-    let startY = event.clientY;
-    let startAngle = angle;
+    const startY = event.clientY;
+const startAngle = angle;
 
     const handleMouseMove = (moveEvent: MouseEvent) => {
-      let deltaY = startY - moveEvent.clientY;
-      let newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 2.5));
+      const deltaY = startY - moveEvent.clientY;
+const newAngle = Math.max(-60, Math.min(60, startAngle + deltaY * 2.5));
 
       setLocalAngle(newAngle);
       setAngle(newAngle);
