@@ -17,7 +17,7 @@ const startAngle = angle;
 
     const handleMouseMove = (moveEvent: MouseEvent) => {
       const deltaY = startY - moveEvent.clientY;
-const newAngle = Math.max(-60, Math.min(60, startAngle + deltaY * 2.5));
+const newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 2.5));
 
       setLocalAngle(newAngle);
       setAngle(newAngle);
