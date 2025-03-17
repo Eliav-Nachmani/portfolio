@@ -55,7 +55,7 @@ export default function Projects() {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
+      <div className="absolute inset-0 bg-black opacity-35 z-0"></div>
 
       {/* Main Content (85vh) */}
       <div className="relative h-[85vh] flex justify-center items-center">

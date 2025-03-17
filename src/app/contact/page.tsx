@@ -13,6 +13,7 @@ export default function Contact() {
           backgroundImage: "url('/images/main-page-bg.webp')",
         }}
       ></div>
+      <div className="absolute inset-0 bg-black opacity-35 z-0"></div>
 
       {/* Shared Curved Path Definition (Used for All Icons) */}
       <svg width="0" height="0">

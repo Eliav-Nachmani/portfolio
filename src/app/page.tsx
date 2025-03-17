@@ -16,7 +16,7 @@ export default function AboutMe() {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <div className="absolute inset-0 bg-black opacity-10 z-0"></div>
+      <div className="absolute inset-0 bg-black opacity-35 z-0"></div>
 
       {/* Animated Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
@@ -26,10 +26,10 @@ export default function AboutMe() {
       </div>
 
       {/* Page Content - Scrollable When Needed */}
-      <div className="relative h-[85vh] min-h-[85vh] grid grid-cols-1 sm:grid-cols-6 md:grid-cols-12 px-4 md:px-12 gap-6 py-10 overflow-auto">
+      <div className="relative grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-12 px-4 md:px-12 gap-6 py-10 overflow-auto">
         
         {/* Left Side Images (Hidden on Mobile, Visible on Tablet & Desktop) */}
-        <div className="hidden sm:flex sm:col-span-2 md:col-span-2 flex-col justify-between z-10">
+<div className="flex flex-col justify-between w-full sm:col-span-2 md:col-span-2 z-10">
           <SideImages
             position="left"
             images={{
@@ -40,14 +40,14 @@ export default function AboutMe() {
         </div>
 
         {/* About Me Section (Now Fully Visible & Scrolls If Needed) */}
-        <div className="col-span-1 sm:col-span-4 md:col-span-8 flex items-center justify-center h-full w-full z-10">
+        <div className="col-span-1 sm:col-span-4 md:col-span-8 flex items-center justify-center h-full z-10">
           <div className="w-full max-w-3xl flex flex-col justify-center items-center p-6 sm:p-10 border border-neon-green bg-black text-center rounded-lg">
             <BioText />
           </div>
         </div>
 
         {/* Right Side Images (Hidden on Mobile, Visible on Tablet & Desktop) */}
-        <div className="hidden sm:flex sm:col-span-2 md:col-span-2 flex-col justify-between z-10">
+<div className="flex flex-col justify-between w-full sm:col-span-2 md:col-span-2 z-10">
           <SideImages
             position="right"
             images={{
