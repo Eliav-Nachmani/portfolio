@@ -7,13 +7,13 @@ interface KnobProps {
 }
 
 const Knob: React.FC<KnobProps> = ({ setAngle }) => {
-  const [angle, setLocalAngle] = useState(-120);
+  const [angle, setLocalAngle] = useState(-60);
   const knobRef = useRef<HTMLDivElement>(null);
 
   const handleStart = (event: React.MouseEvent | React.TouchEvent) => {
     event.preventDefault();
     
-    // Determine if it's a touch or mouse event
+    // Detect touch or mouse event
     const startY =
       "touches" in event
         ? (event as React.TouchEvent).touches[0].clientY
@@ -22,13 +22,13 @@ const Knob: React.FC<KnobProps> = ({ setAngle }) => {
     const startAngle = angle;
 
     const handleMove = (moveEvent: MouseEvent | TouchEvent) => {
-      let moveY =
+      const moveY =
         "touches" in moveEvent
           ? (moveEvent as TouchEvent).touches[0].clientY
           : (moveEvent as MouseEvent).clientY;
 
-      let deltaY = startY - moveY;
-      let newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 2.5));
+      const deltaY = startY - moveY;
+      const newAngle = Math.max(-60, Math.min(60, startAngle + deltaY * 2.5));
 
       setLocalAngle(newAngle);
       setAngle(newAngle);
