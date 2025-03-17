@@ -112,40 +112,65 @@ export default function ProjectPage() {
                 </div>
 
                 {/* Center - Project Image */}
-                <div className={`${isStacked ? "w-full order-2" : "col-span-6 flex flex-col items-center"}`}>
-                    <div className="w-full flex items-center justify-center bg-black rounded-lg relative overflow-hidden group mt-0 lg:mt-6">
-                        <Link href={project.liveDemo} target="_blank">
-                            <Image
-                                src={project.image}
-                                alt={project.name}
-                                width={700}
-                                height={400}
-                                className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:shadow-[0_0_20px_#39ff14]"
-                                unoptimized
-                            />
-                        </Link>
-                    </div>
+<div className={`${isStacked ? "w-full order-2" : "col-span-6 flex flex-col items-center"}`}>
+    <div className="w-full flex items-center justify-center bg-black rounded-lg relative overflow-hidden group mt-0 lg:mt-6">
+        {/* Conditionally remove the link for the portfolio project */}
+        {slug === "portfolio" ? (
+            <Image
+                src={project.image}
+                alt={project.name}
+                width={700}
+                height={400}
+                className="w-full h-full object-cover rounded-lg transition-all duration-500"
+                unoptimized
+            />
+        ) : (
+            <Link href={project.liveDemo} target="_blank">
+                <Image
+                    src={project.image}
+                    alt={project.name}
+                    width={700}
+                    height={400}
+                    className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:shadow-[0_0_20px_#39ff14]"
+                    unoptimized
+                />
+            </Link>
+        )}
+    </div>
 
-                    {/* Buttons Under Image */}
-                    <div className={`flex w-full ${isStacked ? "flex-col items-center space-y-4 mt-6" : "justify-center space-x-4 mt-6"}`}>
-                        <Link href={project.liveDemo} target="_blank">
-                            <button
-                                ref={demoButtonRef}
-                                className="border border-neon-green px-6 py-3 bg-black font-bold hover:bg-neon-green hover:text-black transition rounded-lg"
-                            >
-                                Live Demo
-                            </button>
-                        </Link>
-                        <Link href={project.github} target="_blank">
-                            <button
-                                style={{ minWidth: buttonWidth }}
-                                className="border border-neon-green px-6 py-3 bg-black font-bold hover:bg-neon-green hover:text-black transition rounded-lg"
-                            >
-                                GitHub
-                            </button>
-                        </Link>
-                    </div>
-                </div>
+    {/* Buttons Under Image */}
+    <div className={`flex w-full ${isStacked ? "flex-col items-center space-y-4 mt-6" : "justify-center space-x-4 mt-6"}`}>
+        {/* Modify Live Demo button only for Portfolio project */}
+        {slug === "portfolio" ? (
+            <button
+                ref={demoButtonRef}
+                className="border border-gray-500 px-6 py-3 bg-gray-700 font-bold text-white rounded-lg transition-all duration-300 hover:bg-gray-500 hover:text-gray-300"
+            >
+                You're already here
+            </button>
+        ) : (
+            <Link href={project.liveDemo} target="_blank">
+                <button
+                    ref={demoButtonRef}
+                    className="border border-neon-green px-6 py-3 bg-black font-bold hover:bg-neon-green hover:text-black transition rounded-lg"
+                >
+                    Live Demo
+                </button>
+            </Link>
+        )}
+
+        {/* GitHub button remains the same */}
+        <Link href={project.github} target="_blank">
+            <button
+                style={{ minWidth: buttonWidth }}
+                className="border border-neon-green px-6 py-3 bg-black font-bold hover:bg-neon-green hover:text-black transition rounded-lg"
+            >
+                GitHub
+            </button>
+        </Link>
+    </div>
+</div>
+
 
                 {/* Right Column - Role & Technologies */}
                 <div className={`${isStacked ? "w-full order-3 flex flex-col space-y-6" : "col-span-3 flex flex-col justify-evenly h-full min-h-[250px]"}`}>

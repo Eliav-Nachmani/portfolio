@@ -17,7 +17,7 @@ const projectData = {
   },
   "portfolio": {
     name: "My Portfolio",
-    image: "/images/project3-preview.webp",
+    image: "/images/portfolio.png",
   },
 };
 
