@@ -28,11 +28,10 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
 
   return (
     <div
-      className={`absolute ${
-        isMobile
+      className={`absolute ${isMobile
           ? "relative bottom-[10%] left-[50%] transform -translate-x-1/2 w-[85%] h-6" // Mobile: Bigger, horizontally placed
           : "right-[8%] lg:right-[18%] top-[45%] transform -translate-y-1/2 w-6 h-80" // Desktop: Closer, Bigger
-      } bg-black border border-neon-green rounded-full flex justify-center items-center shadow-[0_0_20px_#39ff14]`}
+        } bg-black border border-neon-green rounded-full flex justify-center items-center shadow-[0_0_20px_#39ff14]`}
     >
       {/* Hidden Native Slider */}
       <input
@@ -46,13 +45,14 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
         style={{
           writingMode: isMobile ? "horizontal-tb" : "vertical-lr",
           WebkitAppearance: "none",
+          touchAction: "none", // Prevent scrolling on touch
+          padding: isMobile ? "20px 0" : "0 20px",
         }}
       />
       {/* Custom Track (Bigger & More Visible) */}
       <div
-        className={`absolute ${
-          isMobile ? "h-2 w-full" : "w-2 h-[92%]"
-        } bg-neon-green rounded-full opacity-80`}
+        className={`absolute ${isMobile ? "h-2 w-full" : "w-2 h-[92%]"
+          } bg-neon-green rounded-full opacity-80`}
       ></div>
       {/* Custom Thumb (Wider on Desktop, Taller on Mobile) */}
       <div
