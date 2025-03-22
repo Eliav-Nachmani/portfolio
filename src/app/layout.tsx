@@ -16,7 +16,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Eliav Nachmani | Portfolio",
-  description: "A futuristic portfolio with a cyberpunk aesthetic.",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
