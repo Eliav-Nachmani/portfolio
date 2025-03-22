@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useKnob } from "@/components/layout/KnobWrapper"; // ✅ Ensures Knob state persists
 import Navigation from "@/components/layout/Navigation";
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
