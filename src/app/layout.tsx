@@ -16,10 +16,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Eliav Nachmani | Portfolio",
-  icons: {
-    icon: '/favicon.ico',
-  },
+  icons: [
+    { rel: 'icon', url: '/favicon.ico?v=2' },
+    { rel: 'icon', type: 'image/png', url: '/favicon.png' },
+  ],
 };
+
 
 export default function RootLayout({
   children,
