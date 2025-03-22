@@ -97,6 +97,16 @@
   opacity: 0.7;
   mix-blend-mode: screen;
 }
+@media (max-width: 768px) {
+  .static-noise-effect {
+    background: 
+      repeating-linear-gradient(0deg, #000, #fff 1px, transparent 2px) 50% 0/100px 100px;
+    animation: noiseEffect 0.4s infinite alternate;
+    opacity: 0.4;
+    mix-blend-mode: screen;
+  }
+}
+
 
   
   /* Shake Effect */
