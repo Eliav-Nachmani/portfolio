@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+"use client";
 
+import { useState, useEffect } from "react";
 
 interface KnobProps {
   angle?: number;
@@ -15,6 +16,10 @@ const Knob: React.FC<KnobProps> = ({ angle = -120, setAngle }) => {
 
   const handleStart = (event: React.MouseEvent | React.TouchEvent) => {
     event.preventDefault();
+
+    // ✅ Disable body scroll while dragging
+    document.body.style.overflow = "hidden";
+
     const startY =
       "touches" in event ? event.touches[0].clientY : event.clientY;
     const startAngle = localAngle;
@@ -29,10 +34,13 @@ const Knob: React.FC<KnobProps> = ({ angle = -120, setAngle }) => {
       const newAngle = Math.max(-120, Math.min(120, startAngle + deltaY * 2.5));
 
       setLocalAngle(newAngle);
-      setAngle?.(newAngle); // use prop callback if available
+      setAngle?.(newAngle);
     };
 
     const cleanup = () => {
+      // ✅ Re-enable scroll after drag
+      document.body.style.overflow = "";
+
       document.removeEventListener("mousemove", handleMove);
       document.removeEventListener("mouseup", cleanup);
       document.removeEventListener("touchmove", handleMove);
@@ -58,7 +66,7 @@ const Knob: React.FC<KnobProps> = ({ angle = -120, setAngle }) => {
           </textPath>
         </text>
       </svg>
-  
+
       {/* 🟢 The Knob Itself */}
       <div
         onMouseDown={handleStart}
@@ -72,7 +80,7 @@ const Knob: React.FC<KnobProps> = ({ angle = -120, setAngle }) => {
         <div className="absolute w-2 h-4 bg-neon-green top-0 left-1/2 transform -translate-x-1/2"></div>
       </div>
     </div>
-  );  
+  );
 };
 
 export default Knob;
