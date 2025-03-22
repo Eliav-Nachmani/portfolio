@@ -26,7 +26,7 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
       {/* ✅ Static Noise Effect */}
       {showNoise && (
         <div className="fixed inset-0 w-full h-screen z-[9999] flex items-center justify-center pointer-events-none">
-          <div className="absolute inset-0 static-noise-effect opacity-80 animate-static-fade"></div>
+          <div className="fixed inset-0 static-noise-effect opacity-80 animate-static-fade"></div>
         </div>
       )}
 
