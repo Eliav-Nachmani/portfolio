@@ -100,7 +100,8 @@
 @media (max-width: 768px) {
   .static-noise-effect {
     background: 
-      repeating-linear-gradient(0deg, #000, #fff 1px, transparent 2px) 50% 0/100px 100px;
+       repeating-radial-gradient(#000 0 0.0001%, #fff 0 0.0002%) 50% 0/2500px 2500px,
+    repeating-conic-gradient(#000 0 0.0001%, #fff 0 0.0002%) 60% 60%/2500px 2500px;
     animation: noiseEffect 0.4s infinite alternate;
     opacity: 0.4;
     mix-blend-mode: screen;
