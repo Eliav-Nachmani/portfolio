@@ -113,7 +113,7 @@ export default function ProjectPage() {
 
                 {/* Center - Project Image */}
 <div className={`m-auto ${isStacked ? "w-full order-2" : "col-span-6 flex flex-col items-center"}`}>
-    <div className="w-full flex items-center justify-center bg-black rounded-lg relative overflow-hidden group mt-0 lg:mt-6">
+    <div className="w-full max-h-[68vh] flex items-center justify-center bg-black rounded-lg relative overflow-hidden group mt-0 lg:mt-6">
         {/* Conditionally remove the link for the portfolio project */}
         {slug === "portfolio" ? (
             <Image

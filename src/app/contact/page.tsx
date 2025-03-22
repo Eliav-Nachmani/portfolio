@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import TypingEffect from "@/components/layout/TypingEffect";
 
 export default function Contact() {
   return (
@@ -24,7 +25,7 @@ export default function Contact() {
 
       {/* ✅ Page Content (Enforce Height) */}
       <div className="relative gap-12 flex flex-col-reverse md:grid md:grid-cols-12 items-center justify-center w-full h-full min-h-full">
-      {/* ✅ Left Column - Contact Icons */}
+        {/* ✅ Left Column - Contact Icons */}
         <div className="col-span-3 flex flex-col items-center justify-center space-y-16 md:space-y-24 relative z-10">
           <div className="grid grid-cols-3 gap-24 smaller:gap-6 sm:gap-24 md:gap-8 md:flex md:flex-col md:space-y-16 transition-all duration-500 ease-in-out transform">
             {[
@@ -74,14 +75,23 @@ export default function Contact() {
             />
 
             {/* ✅ Text Inside Chip - Now Fully Contained */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-14 max-w-[60%] mx-auto rotate-[42deg] skew-x-[-10deg] -mt-[40px] sm:-mt-[100px]">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-1 sm:gap-3 p-6 md:p-14 max-w-[60%] mx-auto rotate-[42deg] skew-x-[-10deg] -mt-[50px] sm:-mt-[100px]">
               <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-neon-green tracking-wide animate-flicker leading-[1] fade-in">
                 Let&apos;s Connect!
               </h1>
-
-              <h2 className="fade-in text-sm md:text-lg lg:text-xl text-white tracking-wide mt-6 animate-flicker leading-[1]">
-                I&apos;m open to new opportunities and collaborations.<br /><br /><b>Reach out!</b>
-              </h2>
+             
+              <TypingEffect
+                text="I&apos;m open to new opportunities / collaborations."
+                speed={130}
+                className="text-md font-normal leading-1"
+              />
+             
+              <TypingEffect
+                text="Reach out!"
+                speed={100}
+                delay={8000}
+                className="text-xl font-bold leading-1 text-neon-green"
+              />
             </div>
           </div>
         </div>

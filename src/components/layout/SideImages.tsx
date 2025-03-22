@@ -17,7 +17,7 @@ const SideImages: React.FC<SideImagesProps> = ({ position, images }) => {
 
   return (
     <div
-      className={`relative w-full h-full flex-col justify-center gap-6 ${position === "left" ? "items-start" : "items-end"
+      className={`relative w-full h-full flex-col justify-center gap-6 ${position === "left" ? "items-start justify-start" : "items-end justify-end"
         } p-4 hidden lg:flex`}
     >
       {/* ✅ Top Image Section */}
