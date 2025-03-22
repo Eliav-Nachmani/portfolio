@@ -33,7 +33,7 @@ const Navigation = () => {
       </div>
 
       {/* ✅ Navigation Buttons */}
-      <div className="flex flex-wrap justify-center flex-1 gap-3">
+      <div className="flex flex-wrap justify-center flex-1 gap-3 mt-4 sm:mt-0">
         {[
           { label: "About Me", path: "/" },
           { label: "Projects", path: "/projects" },
