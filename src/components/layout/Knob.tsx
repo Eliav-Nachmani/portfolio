@@ -54,18 +54,19 @@ const Knob: React.FC<KnobProps> = ({ angle = -120, setAngle }) => {
   };
 
   return (
-    <div className="ml-0 sm:ml-12 mt-4 relative flex flex-col items-center cursor-pointer">
+    <div className="relative mb-4 mt-4 flex flex-col items-center cursor-pointer">
       {/* 🔁 Circular Text */}
       <svg className="absolute -top-6 w-24 h-24" viewBox="0 0 100 100">
         <defs>
           <path id="curve" d="M 10,50 A 40,40 0 1,1 90,50" />
         </defs>
-        <text className="fill-white text-[10px] font-normal uppercase tracking-wide">
+        <text className="fill-white text-[10px] font-medium uppercase tracking-wide drop-shadow-[1px_0_1px_rgba(0,0,0,1)]">
           <textPath href="#curve" startOffset="0%" textAnchor="start">
             Dark Mode
           </textPath>
         </text>
       </svg>
+
 
       {/* 🟢 The Knob Itself */}
       <div
