@@ -9,7 +9,6 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
   const pathname = usePathname();
   const [showNoise, setShowNoise] = useState(false);
   const [currentPage, setCurrentPage] = useState(children);
-  const { angle } = useKnob(); // ✅ Read Knob state (DON'T reset it)
 
   useEffect(() => {
     setShowNoise(true); // Show static effect
