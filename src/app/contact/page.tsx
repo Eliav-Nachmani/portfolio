@@ -30,7 +30,7 @@ export default function Contact() {
             {[
               { href: "mailto:eliavyep@gmail.com", src: "/images/email-icon.webp", label: "Email" },
               { href: "https://www.linkedin.com/in/eliav-nachmani/", src: "/images/linkedin-icon.webp", label: "LinkedIn" },
-              { href: "/resume.pdf", src: "/images/resume.webp", label: "Resume" },
+              { href: "/Eliav_Nachmani_Resume_2025.pdf", src: "/images/resume.webp", label: "Resume" },
             ].map(({ href, src, label }, index) => (
               <div
                 key={index}
