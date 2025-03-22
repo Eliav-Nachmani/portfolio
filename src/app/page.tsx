@@ -5,10 +5,10 @@ import BioText from "@/components/about/BioText";
 
 export default function AboutMe() {
   return (
-    <div className="relative flex flex-col min-h-screen bg-black text-white">
+    <div className="relative flex flex-col h-[100%] bg-black text-white">
       {/* Background Image with Overlay */}
       <div
-        className="absolute inset-0 z-0"
+        className="fixed inset-0 z-0"
         style={{
           backgroundImage: "url('/images/main-page-bg.webp')",
           backgroundSize: "cover",
@@ -16,7 +16,7 @@ export default function AboutMe() {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <div className="absolute inset-0 bg-black opacity-35 z-0"></div>
+      <div className="fixed inset-0 bg-black opacity-35 z-0"></div>
 
       {/* Animated Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
@@ -26,7 +26,7 @@ export default function AboutMe() {
       </div>
 
       {/* Page Content - Scrollable When Needed */}
-      <div className="relative grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-12 px-4 md:px-12 gap-6 py-10 overflow-auto">
+      <div className="m-auto h-full relative grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-12 px-4 md:px-12 gap-6 py-10 overflow-auto">
         
         {/* Left Side Images (Hidden on Mobile, Visible on Tablet & Desktop) */}
 <div className="flex flex-col justify-between w-full sm:col-span-2 md:col-span-2 z-10">

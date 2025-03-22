@@ -2,39 +2,43 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useKnob } from "@/components/layout/KnobWrapper"; // ✅ Ensures Knob state persists
 import Navigation from "@/components/layout/Navigation";
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [showNoise, setShowNoise] = useState(false);
   const [currentPage, setCurrentPage] = useState(children);
+  const { angle } = useKnob(); // ✅ Read Knob state (DON'T reset it)
 
   useEffect(() => {
-    setShowNoise(true); // Show noise effect
+    setShowNoise(true); // Show static effect
 
-    // Delay rendering the new page until after the noise effect disappears
+    // Delay rendering new page until effect fades out
     const timer = setTimeout(() => {
-      setCurrentPage(children); // Only update page content AFTER noise effect is done
-      setShowNoise(false); // Hide noise effect
-    }, 300); // Matches noise effect duration
+      setCurrentPage(children);
+      setTimeout(() => setShowNoise(false), 200);
+    }, 400);
 
     return () => clearTimeout(timer);
   }, [pathname, children]);
 
   return (
     <div className="relative flex flex-col h-screen overflow-hidden">
-      {/* Static Noise Effect (Covers Screen for 0.3s) */}
+      {/* ✅ Static Noise Effect */}
       {showNoise && (
-        <div className="absolute inset-0 w-full h-screen static-noise-effect z-50 pointer-events-none"></div>
+        <div className="fixed inset-0 w-full h-screen z-[9999] flex items-center justify-center pointer-events-none">
+          <div className="absolute inset-0 static-noise-effect opacity-80 animate-static-fade"></div>
+        </div>
       )}
 
-      {/* ✅ Main Content - Scrolls only if needed */}
-      <div className="flex-1 h-[85vh] smaller:h-[75vh] overflow-hidden">
-        <div className="h-full overflow-y-auto">{currentPage}</div>
+      {/* ✅ Main Content (Scrollable Inside) */}
+      <div className=" relative w-full flex-1 overflow-auto">
+        {currentPage}
       </div>
 
-      {/* ✅ Fixed Navbar at the Bottom */}
-      <div className="h-[15vh] smaller:h-[25vh] flex items-center justify-center border-t border-neon-green z-50 fixed bottom-0 left-0 w-full bg-black">
+      {/* ✅ Navbar (Fixed at Bottom) */}
+      <div className=" w-full border-t border-neon-green bg-black">
         <Navigation />
       </div>
     </div>

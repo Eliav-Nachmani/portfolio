@@ -44,7 +44,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <div className="relative flex flex-col min-h-screen bg-black text-white overflow-hidden">
+    <div className="relative flex flex-col h-[100%] bg-black text-white">
       {/* Background Image */}
       <div
         className="absolute inset-0 z-0"
@@ -57,8 +57,8 @@ export default function Projects() {
       />
       <div className="absolute inset-0 bg-black opacity-35 z-0"></div>
 
-      {/* Main Content (85vh) */}
-      <div className="relative h-[85vh] flex justify-center items-center">
+     
+      <div className="relative h-[100%] flex justify-center items-center">
         {/* Project Circles Container */}
         <div
           className="relative flex items-center justify-center w-full h-full"

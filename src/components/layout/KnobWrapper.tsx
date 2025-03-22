@@ -1,45 +1,60 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Knob from "@/components/layout/Knob"; // Import the Knob component
+import { createContext, useContext, useState, useEffect } from "react";
+import Knob from "./Knob";
+
+interface KnobContextType {
+  angle: number;
+  setAngle: (angle: number) => void;
+}
+
+// ✅ Create context
+const KnobContext = createContext<KnobContextType | null>(null);
+
+// ✅ Export hook to use knob state anywhere
+export const useKnob = () => {
+  const context = useContext(KnobContext);
+  if (!context) throw new Error("useKnob must be used inside KnobWrapper");
+  return context;
+};
 
 const KnobWrapper = ({ children }: { children: React.ReactNode }) => {
-  const [angle, setAngle] = useState(-120); // Default knob position
-  const [opacity, setOpacity] = useState(0); // Dynamic opacity
+  // ✅ Store Knob position in `localStorage` to persist across page reloads
+  const [angle, setAngle] = useState(() => {
+    if (typeof window !== "undefined") {
+      return Number(localStorage.getItem("knob-angle")) || -120;
+    }
+    return -120;
+  });
 
   useEffect(() => {
-    const overlay = document.getElementById("color-overlay");
-    if (!overlay) return;
+    if (typeof window !== "undefined") {
+      localStorage.setItem("knob-angle", String(angle));
+    }
+  }, [angle]); // ✅ Save new angle on change
 
-    // Map angle (-120 to 120) to opacity (0 to 0.9)
-    const newOpacity = ((angle + 120) / 240) * 0.9; // Normalize range
-
-    // Smooth transition effect
-    overlay.style.transition = "background-color 0.3s ease-out";
-    overlay.style.backgroundColor = `rgba(255, 0, 0, ${newOpacity.toFixed(2)})`; // Update transparency
-    setOpacity(newOpacity); // Update state for reference
-  }, [angle]);
-
+  // 🔴 HIDDEN Knob (Only for logic, not visible)
   return (
-    <div className="relative">
-      {/* App Content */}
-      {children}
+    <KnobContext.Provider value={{ angle, setAngle }}>
+      <div className="relative">
+        {children}
 
-      {/* Pass Theme Control to Knob */}
-      <div className="absolute bottom-[4%] smaller:bottom-[6%] left-8 z-50">
-        <Knob setAngle={setAngle} /> {/* Pass function to update angle */}
+        {/* ✅ Hidden Working Knob (Controls Overlay) */}
+        <div className="hidden">
+          <Knob />
+        </div>
+
+        {/* ✅ Red Overlay (Controlled by Knob) */}
+        <div
+          id="color-overlay"
+          className="absolute inset-0 z-50 pointer-events-none"
+          style={{
+            mixBlendMode: "multiply",
+            backgroundColor: `rgba(255, 0, 0, ${((angle + 120) / 240) * 0.9})`,
+          }}
+        ></div>
       </div>
-
-      {/* Color Overlay */}
-      <div
-        id="color-overlay"
-        className="absolute inset-0 z-50 pointer-events-none"
-        style={{
-          mixBlendMode: "multiply",
-          backgroundColor: `rgba(255, 0, 0, ${opacity.toFixed(2)})`, // Controlled by knob
-        }}
-      ></div>
-    </div>
+    </KnobContext.Provider>
   );
 };
 

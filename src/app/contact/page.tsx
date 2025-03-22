@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function Contact() {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white relative">
-      {/* Full-Screen Background Image */}
+    <div className="relative flex flex-col h-full min-h-full bg-black text-white">
+      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
@@ -15,27 +15,22 @@ export default function Contact() {
       ></div>
       <div className="absolute inset-0 bg-black opacity-35 z-0"></div>
 
-      {/* Shared Curved Path Definition (Used for All Icons) */}
+      {/* Shared Curved Path Definition */}
       <svg width="0" height="0">
         <defs>
-          <path
-            id="sharedCurve"
-            d="M 10,90 Q 30,10 90,10"
-            fill="transparent"
-          />
+          <path id="sharedCurve" d="M 10,90 Q 30,10 90,10" fill="transparent" />
         </defs>
       </svg>
 
-      {/* Page Content - Ensures Everything is Centered */}
-      <div className="relative flex flex-col-reverse md:flex-row md:grid md:grid-cols-12 items-center justify-center min-h-screen gap-10 md:gap-0">
-        {/* Left Column - Contact Icons */}
-        <div className="col-span-3 flex flex-col items-center justify-center space-y-16 md:space-y-24 relative z-10 h-full">
-        <div className="grid grid-cols-3 gap-24 smaller:gap-6 sm:gap-24 md:gap-8 md:flex md:flex-col md:space-y-16 
-                transition-all duration-500 ease-in-out transform">
+      {/* ✅ Page Content (Enforce Height) */}
+      <div className="relative gap-12 flex flex-col-reverse md:grid md:grid-cols-12 items-center justify-center w-full h-full min-h-full">
+      {/* ✅ Left Column - Contact Icons */}
+        <div className="col-span-3 flex flex-col items-center justify-center space-y-16 md:space-y-24 relative z-10">
+          <div className="grid grid-cols-3 gap-24 smaller:gap-6 sm:gap-24 md:gap-8 md:flex md:flex-col md:space-y-16 transition-all duration-500 ease-in-out transform">
             {[
               { href: "mailto:eliavyep@gmail.com", src: "/images/email-icon.webp", label: "Email" },
               { href: "https://www.linkedin.com/in/eliav-nachmani/", src: "/images/linkedin-icon.webp", label: "LinkedIn" },
-              { href: "/resume.pdf", src: "/images/resume.webp", label: "Resume" }
+              { href: "/resume.pdf", src: "/images/resume.webp", label: "Resume" },
             ].map(({ href, src, label }, index) => (
               <div
                 key={index}
@@ -61,14 +56,13 @@ export default function Contact() {
                   />
                 </Link>
               </div>
-
             ))}
           </div>
         </div>
 
-        {/* Right Column - Chip Design with Contained Text */}
-        <div className="col-span-9 flex items-center justify-center relative w-full h-full ">
-          {/* Chip Container */}
+        {/* ✅ Right Column - Chip Design */}
+        <div className="col-span-9 flex items-center justify-center relative w-full ">
+          {/* ✅ Chip Container - Ensures Full Height */}
           <div className="relative flex flex-col items-center justify-center w-full max-w-[700px] m-4 rounded-lg transition-all duration-300 floating">
             {/* Chip Image */}
             <Image
@@ -79,14 +73,14 @@ export default function Contact() {
               className="w-full max-w-[700px] h-auto rounded-lg grow"
             />
 
-            {/* Text Inside Chip - Fully Contained with Padding & Centered */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-14 max-w-[60%] mx-auto rotate-[42deg] skew-x-[-10deg] -mt-[40px] sm:-mt-[100px] ">
+            {/* ✅ Text Inside Chip - Now Fully Contained */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-14 max-w-[60%] mx-auto rotate-[42deg] skew-x-[-10deg] -mt-[40px] sm:-mt-[100px]">
               <h1 className="text-2xl md:text-4xl lg:text-4xl font-bold text-neon-green tracking-wide animate-flicker leading-[1] fade-in">
-              Let&apos;s Connect!
+                Let&apos;s Connect!
               </h1>
 
-              <h2 className="fade-in text-sm md:text-lg lg:text-xl text-white tracking-wide mt-6 animate-flicker leading-[1] ">
-              I&apos;m open to new opportunities and collaborations.<br /><br /><b>Reach out!</b>
+              <h2 className="fade-in text-sm md:text-lg lg:text-xl text-white tracking-wide mt-6 animate-flicker leading-[1]">
+                I&apos;m open to new opportunities and collaborations.<br /><br /><b>Reach out!</b>
               </h2>
             </div>
           </div>

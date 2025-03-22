@@ -53,11 +53,11 @@ export default function ProjectPage() {
     }
 
     return (
-        <div className="relative flex flex-col min-h-screen bg-black text-white pb-10 pt-2">
+        <div className="relative flex flex-col h-full bg-black text-white pb-10 pt-2">
             {/* Background Image */}
             <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-[url('/images/project-bg.webp')] bg-cover bg-center bg-no-repeat"></div>
-                <div className="absolute inset-0 bg-black opacity-35"></div>
+                <div className="h-full fixed inset-0 bg-[url('/images/project-bg.webp')] bg-cover bg-center bg-no-repeat"></div>
+                <div className="fixed inset-0 bg-black opacity-35"></div>
             </div>
 
             {/* Navigation Arrows */}
@@ -93,7 +93,7 @@ export default function ProjectPage() {
             </div>
 
             {/* Content Grid */}
-            <div className={`relative ${isStacked ? "flex flex-col items-center px-4 gap-6 mt-4" : "grid grid-cols-12 gap-12 items-start px-8 h-[85vh]"}`}>
+            <div className={`pb-16 relative ${isStacked ? "flex flex-col items-center px-4 gap-6 mt-4" : "grid grid-cols-12 gap-12 items-start px-8 h-[85vh]"}`}>
 
                 {/* Left Column - Project Details */}
                 <div className={`${isStacked ? "w-full flex flex-col space-y-6 order-1" : "col-span-3 flex flex-col justify-evenly h-full min-h-[250px] text-left"}`}>
@@ -112,7 +112,7 @@ export default function ProjectPage() {
                 </div>
 
                 {/* Center - Project Image */}
-<div className={`${isStacked ? "w-full order-2" : "col-span-6 flex flex-col items-center"}`}>
+<div className={`m-auto ${isStacked ? "w-full order-2" : "col-span-6 flex flex-col items-center"}`}>
     <div className="w-full flex items-center justify-center bg-black rounded-lg relative overflow-hidden group mt-0 lg:mt-6">
         {/* Conditionally remove the link for the portfolio project */}
         {slug === "portfolio" ? (
@@ -139,7 +139,7 @@ export default function ProjectPage() {
     </div>
 
     {/* Buttons Under Image */}
-    <div className={`flex w-full ${isStacked ? "flex-col items-center space-y-4 mt-6" : "justify-center space-x-4 mt-6"}`}>
+    <div className={`flex pb-6 w-full ${isStacked ? "flex-col items-center space-y-4 mt-6" : "justify-center space-x-4 mt-6"}`}>
         {/* Modify Live Demo button only for Portfolio project */}
         {slug === "portfolio" ? (
             <button
