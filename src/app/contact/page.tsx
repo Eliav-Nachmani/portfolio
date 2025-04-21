@@ -31,7 +31,7 @@ export default function Contact() {
             {[
               { href: "mailto:eliavyep@gmail.com", src: "/images/email-icon.webp", label: "Email" },
               { href: "https://www.linkedin.com/in/eliav-nachmani/", src: "/images/linkedin-icon.webp", label: "LinkedIn" },
-              { href: "/Eliav_Nachmani_Resume_2025.pdf", src: "/images/resume.webp", label: "Resume" },
+              { href: "/Resume-2025.pdf", src: "/images/resume.webp", label: "Resume" },
             ].map(({ href, src, label }, index) => (
               <div
                 key={index}
@@ -81,7 +81,7 @@ export default function Contact() {
               </h1>
              
               <TypingEffect
-                text="I&apos;m open to new opportunities / collaborations."
+                text="I&apos;m open to new opportunities"
                 speed={130}
                 className="text-md font-normal leading-1"
               />
@@ -89,7 +89,7 @@ export default function Contact() {
               <TypingEffect
                 text="Reach out!"
                 speed={100}
-                delay={8000}
+                delay={5000}
                 className="text-xl font-bold leading-1 text-neon-green"
               />
             </div>
