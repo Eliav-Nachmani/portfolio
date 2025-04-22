@@ -81,7 +81,7 @@ export default function Contact() {
               </h1>
              
               <TypingEffect
-                text="I&apos;m open to new opportunities"
+                text="I&apos;m always open to new opportunities."
                 speed={130}
                 className="text-md font-normal leading-1"
               />
