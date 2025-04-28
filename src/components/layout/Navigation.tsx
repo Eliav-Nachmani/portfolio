@@ -37,9 +37,9 @@ const Navigation = () => {
         {/* Navigation Buttons */}
         <div className="flex flex-wrap justify-center gap-3 sm:gap-8 sm:ml-4 mt-4 sm:mt-0">
           {[
+            { label: "About Me", path: "/", external: false },
             { label: "Code Projects", path: "/projects", external: false },
             { label: "Design Projects", path: "https://eliavnachmani.wixsite.com/eliavnachmani", external: true },
-            { label: "About Me", path: "/", external: false },
             { label: "Contact", path: "/contact", external: false },
           ].map(({ label, path, external }, index) => {
             const isActive = activeButton === label;
