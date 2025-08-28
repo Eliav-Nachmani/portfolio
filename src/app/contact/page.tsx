@@ -8,13 +8,13 @@ export default function Contact() {
   return (
     <div className="relative flex flex-col h-full min-h-full bg-black text-white">
       {/* Background Image */}
-      <div
+      {/* <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('/images/main-page-bg.webp')",
         }}
       ></div>
-      <div className="absolute inset-0 bg-black opacity-35 z-0"></div>
+      <div className="absolute inset-0 bg-black opacity-35 z-0"></div> */}
 
       {/* Shared Curved Path Definition */}
       <svg width="0" height="0">

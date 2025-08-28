@@ -24,14 +24,7 @@ const BioText = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setContentVisible(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+  
   return (
     <div className="flex flex-col justify-center h-full w-full">
       <h1 className="text-2xl font-bold text-neon-green mb-6 text-left">A Bit About Me.</h1>
@@ -43,7 +36,11 @@ const BioText = () => {
             text="Hi, I'm Eliav Nachmani."
             speed={100}
             className="text-md font-normal"
-            onComplete={() => setContentVisible(true)}
+            onComplete={() => {
+              setTimeout(() => {
+                setContentVisible(true);
+              }, 1000); // ⏱ 1 second delay
+            }}
           />
         )}
 
