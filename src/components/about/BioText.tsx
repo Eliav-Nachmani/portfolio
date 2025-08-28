@@ -24,6 +24,14 @@ const BioText = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setContentVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="flex flex-col justify-center h-full w-full">
       <h1 className="text-2xl font-bold text-neon-green mb-6 text-left">A Bit About Me.</h1>
