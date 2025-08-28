@@ -10,7 +10,7 @@ export default function AboutMe() {
       <div
         className="fixed inset-0 z-0"
         style={{
-          backgroundImage: "url('/images/main-page-bg.webp')",
+          // backgroundImage: "url('/images/main-page-bg.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
