@@ -47,14 +47,14 @@ const BioText = () => {
         {/* ✅ Rest of the content fades in after typing completes */}
         <div className={`transition-opacity duration-1000 ${contentVisible ? "opacity-100" : "opacity-0"}`}>
           <p className="mb-4 mt-2">
-            I build web applications that are efficient, structured, and easy to maintain. My work is mostly focused 
-            on React and Next.js, but I also handle backend development when needed, working with Node.js, MongoDB, and REST APIs.
+            My work is mostly focused on React and Next.js, but I also handle backend development when needed, working with Node.js, MongoDB, and REST APIs.
           </p>
 
           <p className="mb-4">
             Coming from a digital design background, I care about how things look and feel, but just as much about how they’re built.
-            My goal is always to write clean, logical code that makes development smoother and the end product better.
           </p>
+
+          <p className="mb-4">I love music. I love food. I love Code.</p>
 
           <h2 className="text-neon-green font-bold mt-6">Tech I Work With:</h2>
 
