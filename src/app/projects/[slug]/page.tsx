@@ -7,50 +7,131 @@ import projectData from "@/data/projects.json";
 import { useEffect, useState, useRef } from "react";
 
 const techIcons: Record<string, string> = {
-    "React": "react.webp",
-    "Next.js": "next.webp",
-    "TypeScript": "typescript.webp",
-    "Node.js": "node.webp",
-    "Express": "express.webp",
-    "MongoDB": "mongodb.webp",
-    "Framer Motion": "framer.webp",
-    "REST API": "restapi.webp",
-    "Auth0": "auth0.webp",
-    "Tailwind CSS": "Tailwind-CSS.webp"
+  "React": "react.webp",
+  "Next.js": "next.webp",
+  "TypeScript": "typescript.webp",
+  "Node.js": "node.webp",
+  "Express": "express.webp",
+  "MongoDB": "mongodb.webp",
+  "Framer Motion": "framer.webp",
+  "REST API": "restapi.webp",
+  "Auth0": "auth0.webp",
+  "Tailwind CSS": "Tailwind-CSS.webp"
 };
 
 export default function ProjectPage() {
-    const { slug } = useParams();
-    const router = useRouter();
-    const projectKeys = Object.keys(projectData);
-    const currentIndex = projectKeys.indexOf(slug as string);
-    const prevProject = projectKeys[(currentIndex - 1 + projectKeys.length) % projectKeys.length];
-    const nextProject = projectKeys[(currentIndex + 1) % projectKeys.length];
-    const project = slug ? projectData[slug as keyof typeof projectData] : null;
+  const { slug } = useParams();
+  const router = useRouter();
 
-    const [isStacked, setIsStacked] = useState(false);
-    const demoButtonRef = useRef<HTMLButtonElement>(null);
-    const [buttonWidth, setButtonWidth] = useState<string>("auto");
+  const projectKeys = Object.keys(projectData);
+  const currentIndex = projectKeys.indexOf(slug as string);
+  const prevProject = projectKeys[(currentIndex - 1 + projectKeys.length) % projectKeys.length];
+  const nextProject = projectKeys[(currentIndex + 1) % projectKeys.length];
+  const project = slug ? projectData[slug as keyof typeof projectData] : null;
 
-    useEffect(() => {
-        const checkStack = () => {
-            setIsStacked(window.innerWidth < 1024); // Breaks at lg (1024px)
-        };
-        checkStack();
-        window.addEventListener("resize", checkStack);
-        return () => window.removeEventListener("resize", checkStack);
-    }, []);
+  const [isStacked, setIsStacked] = useState(false);
 
-    // Ensure GitHub button matches Live Demo button width
-    useEffect(() => {
-        if (demoButtonRef.current) {
-            setButtonWidth(`${demoButtonRef.current.offsetWidth}px`);
-        }
-    }, [isStacked]);
+  // Button width parity
+  const demoButtonRef = useRef<HTMLButtonElement>(null);
+  const [buttonWidth, setButtonWidth] = useState<string>("auto");
 
-    if (!project) {
-        return <div className="text-center text-neon-green mt-20">Project not found...</div>;
+  // Scroll/swipe navigation
+  const [isNavigating, setIsNavigating] = useState(false);
+  const touchStartY = useRef<number | null>(null);
+
+  useEffect(() => {
+    const checkStack = () => setIsStacked(window.innerWidth < 1024);
+    checkStack();
+    window.addEventListener("resize", checkStack);
+    return () => window.removeEventListener("resize", checkStack);
+  }, []);
+
+  // Ensure GitHub button matches Live Demo button width
+  useEffect(() => {
+    if (demoButtonRef.current) {
+      setButtonWidth(`${demoButtonRef.current.offsetWidth}px`);
     }
+  }, [isStacked]);
+
+  // Wheel/swipe handlers
+  useEffect(() => {
+    let cooldown = false;
+    const COOLDOWN_MS = 1000; // prevent multiple triggers per gesture
+
+    const navigate = (dir: "next" | "prev") => {
+      if (cooldown || isNavigating) return;
+      setIsNavigating(true);
+      cooldown = true;
+
+      if (dir === "next") {
+        router.push(`/projects/${nextProject}`);
+      } else {
+        router.push(`/projects/${prevProject}`);
+      }
+
+      setTimeout(() => {
+        cooldown = false;
+        setIsNavigating(false);
+      }, COOLDOWN_MS);
+    };
+
+    // Only trigger when the page itself isn't scrollable (or near top/bottom)
+    const atTop = () =>
+      (document.scrollingElement?.scrollTop ?? 0) <= 2;
+    const atBottom = () => {
+      const el = document.scrollingElement;
+      if (!el) return true;
+      return el.scrollHeight - el.clientHeight - el.scrollTop <= 2;
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      // ignore tiny jitters
+      if (Math.abs(e.deltaY) < 30) return;
+
+      // Optional guards so normal page scrolling isn't hijacked
+      // If scrolling down, allow only when near bottom; if up, when near top
+      if (e.deltaY > 0 && !atBottom()) return;
+      if (e.deltaY < 0 && !atTop()) return;
+
+      if (e.deltaY > 0) navigate("next");
+      else navigate("prev");
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.changedTouches[0].clientY;
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      if (touchStartY.current === null) return;
+      const delta = e.changedTouches[0].clientY - touchStartY.current;
+      touchStartY.current = null;
+
+      // threshold
+      if (Math.abs(delta) < 60) return;
+
+      // same top/bottom guards for swipe
+      if (delta < 0 && !atBottom()) return; // swipe up → next
+      if (delta > 0 && !atTop()) return;    // swipe down → prev
+
+      if (delta < 0) navigate("next");
+      else navigate("prev");
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener("wheel", onWheel as any);
+      window.removeEventListener("touchstart", onTouchStart as any);
+      window.removeEventListener("touchend", onTouchEnd as any);
+    };
+  }, [router, nextProject, prevProject, isNavigating]);
+
+  if (!project) {
+    return <div className="text-center text-neon-green mt-20">Project not found...</div>;
+  }
+
 
     return (
         <div className="relative flex flex-col h-full bg-black text-white pb-10 pt-2">
