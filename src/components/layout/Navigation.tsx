@@ -39,8 +39,9 @@ const Navigation = () => {
           {[
             { label: "About Me", path: "/", external: false },
             { label: "Code Projects", path: "/projects", external: false },
-            { label: "Design Projects", path: "https://eliavnachmani.wixsite.com/eliavnachmani", external: true },
             { label: "Contact", path: "/contact", external: false },
+            { label: "Design Projects", path: "https://eliavnachmani.wixsite.com/eliavnachmani", external: true },
+            
           ].map(({ label, path, external }, index) => {
             const isActive = activeButton === label;
 
