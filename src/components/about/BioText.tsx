@@ -51,7 +51,7 @@ const BioText = () => {
           </p>
 
           <p className="mb-4">
-            Coming from a digital design background, I care about how things look and feel, but just as much about how they’re built.
+            Coming from a digital design background, I care about how things look and feel, just as much as how they’re built.
           </p>
 
           <p className="mb-4">I love music. I love food. I love Code.</p>
