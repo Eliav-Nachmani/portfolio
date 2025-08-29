@@ -64,14 +64,14 @@ export default function Contact() {
         {/* ✅ Right Column - Chip Design */}
         <div className="col-span-9 flex items-center justify-center relative w-full ">
           {/* ✅ Chip Container - Ensures Full Height */}
-          <div className="relative flex flex-col items-center justify-center w-full max-w-[700px] m-4 rounded-lg transition-all duration-300 floating">
+          <div className="relative flex flex-col items-center justify-center w-full max-w-[530px] m-4 rounded-lg transition-all duration-300 floating">
             {/* Chip Image */}
             <Image
               src="/images/chip-4.png"
               alt="Chip Background"
-              width={700}
-              height={700}
-              className="w-full max-w-[700px] h-auto rounded-lg grow"
+              width={530}
+              height={530}
+              className="w-full max-w-[530px] h-auto rounded-lg grow"
             />
 
             {/* ✅ Text Inside Chip - Now Fully Contained */}
