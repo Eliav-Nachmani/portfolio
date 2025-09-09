@@ -26,7 +26,7 @@ export default function WebflowProjectPage() {
 
   const [isStacked, setIsStacked] = useState(false);
   const demoButtonRef = useRef<HTMLButtonElement>(null);
-  const [buttonWidth, setButtonWidth] = useState<string>("auto");
+
 
   useEffect(() => {
     const checkStack = () => setIsStacked(window.innerWidth < 1024);
@@ -35,11 +35,7 @@ export default function WebflowProjectPage() {
     return () => window.removeEventListener("resize", checkStack);
   }, []);
 
-  useEffect(() => {
-    if (demoButtonRef.current) {
-      setButtonWidth(`${demoButtonRef.current.offsetWidth}px`);
-    }
-  }, [isStacked]);
+ 
 
   if (!project) {
     return <div className="text-center text-neon-green mt-20">Project not found...</div>;
