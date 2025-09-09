@@ -147,7 +147,7 @@ export default function ProjectPage() {
 
                         <Link href={project.github} target="_blank">
                             <button
-                                style={{ minWidth: buttonWidth }}
+                                style={{ width: buttonWidth }}
                                 className="border border-neon-green px-6 py-3 bg-black font-bold hover:bg-neon-green hover:text-black transition rounded-lg"
                             >
                                 GitHub
