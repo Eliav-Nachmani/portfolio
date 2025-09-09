@@ -25,5 +25,31 @@
     "technology": ["React", "Next.js", "Tailwind CSS", "TypeScript"],
     "liveDemo": "https://eliav-nachmani-portfolio.vercel.app/",
     "github": "https://github.com/Eliav-Nachmani/portfolio"
+  },
+  "webflow-project-1": {
+    "name": "MIT Professional Education",
+    "image": "/images/MIT.png",
+    "details": "High-impact Webflow landing page for MIT Professional Education AI & ML course. Designed to clearly present program highlights, enrollment details, and instructor insights, with responsive layout and modern visual hierarchy.",
+    "roles": ["Webflow Developer"],
+    "technology": ["Webflow", "Figma", "SalesForce"],
+    "liveDemo": "https://professional-education.mit.edu/aism",
+    "github": "https://github.com/Eliav-Nachmani/task_time_calculator"
+  },
+  "webflow-project-2": {
+    "name": "Affirm SBM Webinar",
+    "image": "/images/Affirm.png",
+    "details": "Webflow-built landing page for Affirm Small Business Management webinar. Features a clean, conversion-focused layout with custom form integration, session overview, and speaker highlights.",
+    "roles": ["Webflow Designer", "UX Consultant"],
+    "technology": ["Webflow", "Figma", "SalesForce" ],
+    "liveDemo": "https://info.affirm.com/SBMWebinar",
+    "github": "https://github.com/Eliav-Nachmani/task_time_calculator"
+  },
+  "webflow-project-3": {
+    "name": "Sciton Webinar Archive",
+    "image": "/images/Sciton.png",
+    "details": "Webflow landing page designed for Sciton’s on-demand video archive. Includes a gated video library, organized by category, with a professional, branded layout and embedded form access.",    "roles": ["Webflow Designer", "UX Consultant"],
+    "technology": ["Webflow", "Figma", "SalesForce" ],
+    "liveDemo": "https://go2.sciton.com/Sciton-Video-Archive",
+    "github": "https://github.com/Eliav-Nachmani/task_time_calculator"
   }
 }

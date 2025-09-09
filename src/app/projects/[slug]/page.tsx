@@ -3,57 +3,69 @@
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import projectData from "@/data/projects.json";
+import rawProjectData from "@/data/projects.json";
 import { useEffect, useState, useRef } from "react";
 
+// Type definition for each project
+interface Project {
+  name: string;
+  image: string;
+  details: string;
+  roles: string[];
+  technology: string[];
+  liveDemo: string;
+  github: string;
+}
 
+// Type-safe project data
+const projectData: Record<string, Project> = rawProjectData;
 
 const techIcons: Record<string, string> = {
-    "React": "react.webp",
-    "Next.js": "next.webp",
-    "TypeScript": "typescript.webp",
-    "Node.js": "node.webp",
-    "Express": "express.webp",
-    "MongoDB": "mongodb.webp",
-    "Framer Motion": "framer.webp",
-    "REST API": "restapi.webp",
-    "Auth0": "auth0.webp",
-    "Tailwind CSS": "Tailwind-CSS.webp"
+  "React": "react.webp",
+  "Next.js": "next.webp",
+  "TypeScript": "typescript.webp",
+  "Node.js": "node.webp",
+  "Express": "express.webp",
+  "MongoDB": "mongodb.webp",
+  "Framer Motion": "framer.webp",
+  "REST API": "restapi.webp",
+  "Auth0": "auth0.webp",
+  "Tailwind CSS": "Tailwind-CSS.webp"
 };
 
 export default function ProjectPage() {
-    const { slug } = useParams();
-    const router = useRouter();
-    const projectKeys = Object.keys(projectData);
-    const currentIndex = projectKeys.indexOf(slug as string);
-    const prevProject = projectKeys[(currentIndex - 1 + projectKeys.length) % projectKeys.length];
-    const nextProject = projectKeys[(currentIndex + 1) % projectKeys.length];
-    const project = slug ? projectData[slug as keyof typeof projectData] : null;
+  const { slug } = useParams();
+  const router = useRouter();
 
-    const [isStacked, setIsStacked] = useState(false);
-    const demoButtonRef = useRef<HTMLButtonElement>(null);
-    const [buttonWidth, setButtonWidth] = useState<string>("auto");
+  const projectKeys = Object.keys(projectData);
+  const currentIndex = projectKeys.indexOf(slug as string);
+  const prevProject = projectKeys[(currentIndex - 1 + projectKeys.length) % projectKeys.length];
+  const nextProject = projectKeys[(currentIndex + 1) % projectKeys.length];
+  const project = slug ? projectData[slug as keyof typeof projectData] : null;
 
-    useEffect(() => {
-        const checkStack = () => {
-            setIsStacked(window.innerWidth < 1024); // Breaks at lg (1024px)
-        };
-        checkStack();
-        window.addEventListener("resize", checkStack);
-        return () => window.removeEventListener("resize", checkStack);
-    }, []);
+  const [isStacked, setIsStacked] = useState(false);
+  const demoButtonRef = useRef<HTMLButtonElement>(null);
+  const [buttonWidth, setButtonWidth] = useState<string>("auto");
 
-    // Ensure GitHub button matches Live Demo button width
-    useEffect(() => {
-        if (demoButtonRef.current) {
-            setButtonWidth(`${demoButtonRef.current.offsetWidth}px`);
-        }
-    }, [isStacked]);
+  useEffect(() => {
+    const checkStack = () => {
+      setIsStacked(window.innerWidth < 1024); // Breaks at lg (1024px)
+    };
+    checkStack();
+    window.addEventListener("resize", checkStack);
+    return () => window.removeEventListener("resize", checkStack);
+  }, []);
 
-    if (!project) {
-        return <div className="text-center text-neon-green mt-20">Project not found...</div>;
+  useEffect(() => {
+    if (demoButtonRef.current) {
+      setButtonWidth(`${demoButtonRef.current.offsetWidth}px`);
     }
+  }, [isStacked]);
 
+  if (!project) {
+    return <div className="text-center text-neon-green mt-20">Project not found...</div>;
+  }
+  
     return (
         <div className="relative flex flex-col h-full bg-black text-white pb-10 pt-2">
             {/* Background Image */}
